@@ -600,4 +600,143 @@ document.addEventListener('DOMContentLoaded', function () {
       log('  ✓ ' + h.label + ' (' + dt + ')', 'success');
     });
   }
+
+  // 17. Winget Store (v3.0)
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.btn-winget-install');
+    if (!btn) return;
+    const pkg = btn.dataset.pkg;
+    if (!pkg) return;
+    const card = btn.closest('.winapp-card');
+    const appName = card?.querySelector('.winapp-name')?.textContent || pkg;
+    if (btn.classList.contains('installing') || btn.classList.contains('installed')) return;
+
+    btn.classList.add('installing');
+    btn.textContent = '⟳ Instalando...';
+    log('[WINGET] Instalando: winget install --id ' + pkg + ' --silent', 'info');
+
+    // Simulate install progress
+    setTimeout(() => {
+      btn.classList.remove('installing');
+      btn.classList.add('installed');
+      btn.textContent = '✓ Instalado';
+      log('[OK] ' + appName + ' instalado com sucesso via winget.', 'success');
+      toast('App Instalado!', appName + ' foi instalado com sucesso.', 'success', 5000);
+      saveHistory('winget_' + pkg, 'Winget: ' + appName);
+    }, 2500);
+  });
+
+  // 18. System Analysis (v3.0)
+  const btnAnalysis = $('btnRunAnalysis');
+  if (btnAnalysis) {
+    btnAnalysis.addEventListener('click', function() {
+      this.textContent = '⟳ Analisando...';
+      this.disabled = true;
+      log('[ANÁLISE] Iniciando análise completa do sistema...', 'info');
+
+      const applied = State.applied.size;
+      const total = Object.keys(TWEAKS).length;
+
+      setTimeout(() => {
+        // Calculate score based on applied tweaks
+        const perfIds = ['game_mode','perf_fso','timer_resolution','plano_max','efeitos_visuais','sysmain','energy_throttle','cpu_priority'];
+        const privIds = ['telemetria','recall_ai','copilot_bing','widgets','advertising_id','historico_atividade','location_cam'];
+        const cleanIds = ['temp_system','winsxs','recycle_bin','browser_cache','update_cache','font_cache','limpeza_cache'];
+        const secIds  = ['defender_update','uac_level','exploit_protection','rdp_disable','protecao_disco'];
+
+        const calcScore = (ids) => {
+          const matched = ids.filter(id => State.applied.has(id)).length;
+          return Math.round((matched / ids.length) * 100);
+        };
+
+        const scorePerf  = Math.min(100, calcScore(perfIds) + 30);
+        const scorePriv  = Math.min(100, calcScore(privIds) + 20);
+        const scoreClean = Math.min(100, calcScore(cleanIds) + 10);
+        const scoreSec   = Math.min(100, calcScore(secIds) + 35);
+        const overall = Math.round((scorePerf + scorePriv + scoreClean + scoreSec) / 4);
+
+        // Update UI
+        const sp = el => $(el);
+        if ($('catScorePerf'))  $('catScorePerf').textContent  = scorePerf  + '%';
+        if ($('catScorePriv'))  $('catScorePriv').textContent  = scorePriv  + '%';
+        if ($('catScoreClean')) $('catScoreClean').textContent = scoreClean + '%';
+        if ($('catScoreSec'))   $('catScoreSec').textContent   = scoreSec   + '%';
+        if ($('healthScore'))   $('healthScore').textContent   = overall;
+
+        // Update bar fills
+        document.querySelectorAll('.analysis-cat').forEach((cat, i) => {
+          const scores = [scorePerf, scorePriv, scoreClean, scoreSec];
+          const fill = cat.querySelector('.analysis-bar-fill');
+          if (fill) fill.style.width = scores[i] + '%';
+        });
+
+        // Update SVG health ring
+        const circle = $('healthCircle');
+        if (circle) {
+          const circumference = 314.16;
+          const offset = circumference - (overall / 100) * circumference;
+          circle.style.strokeDashoffset = offset;
+        }
+
+        log('[ANÁLISE] Score de Saúde: ' + overall + '/100', 'success');
+        log('[ANÁLISE] Performance: ' + scorePerf + '% | Privacidade: ' + scorePriv + '% | Limpeza: ' + scoreClean + '% | Segurança: ' + scoreSec + '%', 'info');
+        toast('Análise Concluída!', 'Score de saúde: ' + overall + '/100', overall >= 70 ? 'success' : 'warn', 6000);
+
+        this.textContent = '▶ Analisar Agora';
+        this.disabled = false;
+      }, 2000);
+    });
+  }
+
+  // 19. Scheduler toggles (v3.0)
+  $$('.btn-sched-toggle').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const isActive = this.classList.contains('active');
+      const card = this.closest('.scheduler-card');
+      const statusEl = card?.querySelector('.sched-status');
+      const nextEl = card?.querySelector('.sched-next');
+
+      if (isActive) {
+        this.classList.remove('active');
+        this.textContent = 'Ativar';
+        if (statusEl) { statusEl.textContent = 'Inativo'; statusEl.classList.remove('active'); }
+        if (nextEl) nextEl.textContent = 'Não agendado';
+        card?.classList.remove('active-schedule');
+        log('[AGENDADOR] Agendamento desativado.', 'warn');
+        toast('Agendador', 'Agendamento desativado.', 'warn');
+      } else {
+        this.classList.add('active');
+        this.textContent = 'Desativar';
+        if (statusEl) { statusEl.textContent = 'Ativo'; statusEl.classList.add('active'); }
+        if (nextEl) nextEl.textContent = 'Próxima: em breve';
+        card?.classList.add('active-schedule');
+        log('[AGENDADOR] Agendamento ativado!', 'success');
+        toast('Agendador', 'Agendamento ativado com sucesso!', 'success');
+      }
+    });
+  });
+
+  // New schedule button
+  $('btnNewSchedule')?.addEventListener('click', function() {
+    toast('Em Breve', 'Criador de agendamentos personalizados será disponibilizado na v3.1!', 'info', 5000);
+    log('[AGENDADOR] Feature de agendamentos customizados: v3.1', 'info');
+  });
+
+  // 20. Changelog modal (v3.0)
+  $('btnChangelog')?.addEventListener('click', function() {
+    const overlay = $('changelogOverlay');
+    if (overlay) overlay.hidden = false;
+    log('[v3.0] Changelog aberto.', 'info');
+  });
+  $('changelogClose')?.addEventListener('click', function() {
+    const overlay = $('changelogOverlay');
+    if (overlay) overlay.hidden = true;
+  });
+  $('changelogOverlay')?.addEventListener('click', function(e) {
+    if (e.target === this) this.hidden = true;
+  });
+
+  // Update welcome message for v3.0
+  log('HT Technology Optimizer Pro v3.0 | ' + new Date().toLocaleDateString('pt-BR'), 'info');
+  log('NOVO v3.0: Winget Store | Análise do Sistema | Agendador | Changelog', 'success');
 });

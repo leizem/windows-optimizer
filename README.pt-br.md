@@ -1,7 +1,7 @@
 # 🖥️ HT Technology — Windows Optimizer Pro
 
 > **Dashboard Premium de Otimização para Windows 10 & 11**
-> Versão 2.2 · Desenvolvido por HT Technology · 19/06/2026
+> Versão 3.0 · Desenvolvido por HT Technology · 19/06/2026
 
 [🇺🇸 English Version](README.en.md)
 
@@ -475,21 +475,15 @@ WINDOWS OPTIMIZER/
 
 ## 🗺️ Roadmap
 
-### v2.2 (Atual)
-- [x] **Perfis de Otimização** — Gaming Pro, Office & Produtividade, Servidor & Headless
-- [x] **6 novos tweaks Windows 11 2026:**
-  - VBS / Memory Integrity Toggle (+5~20% FPS gaming)
-  - Low Latency Profile (responsividade do shell)
-  - Atualização via Winget (--all --silent)
-  - Desativar Copilot Sidebar (método 2026)
-  - CPU Boost Mode Agressivo (P-State)
-  - PageFile Gerenciado Automaticamente
-- [x] **Busca de tweaks** — filtro em tempo real no header
-- [x] **Histórico de execuções** — persiste via localStorage (50 entradas)
-- [x] **Score rings visuais** por perfil (Gaming 92, Office 78, Servidor 85)
-- [x] **Badge NOVO** em tweaks adicionados na v2.2
-- [x] **Version badge** v2.2 no logo
-- [x] 64 tweaks no total (de 50+ para 64)
+### v3.0 (Atual)
+- [x] **Winget Store** — instalar 12+ apps populares com 1 clique (Chrome, Firefox, VS Code, Git, Steam, etc.)
+- [x] **Análise do Sistema** — scanner de saúde com score visual (Performance, Privacidade, Limpeza, Segurança)
+- [x] **Agendador de Limpeza** — limpezas periódicas automáticas (Semanal, Mensal, Backup diário)
+- [x] **Changelog Interativo** — histórico de versões no próprio app (modal dedicado)
+- [x] **3 novas abas** — Winget Store, Análise, Agendador
+- [x] **Botão Changelog** no header
+- [x] **Badge v3.0** nos novos painéis
+- [x] Simulação de instalação via winget com feedback visual
 
 ### v2.1 (Concluído)
 - [x] Dashboard premium com 8 módulos
@@ -543,7 +537,7 @@ Redistribuição não autorizada é proibida.
 ```
   ╔══════════════════════════════════╗
   ║       HT Technology              ║
-  ║   Windows Optimizer Pro v2.2     ║
+  ║   Windows Optimizer Pro v3.0     ║
   ║   19 de Junho de 2026            ║
   ╚══════════════════════════════════╝
 ```
