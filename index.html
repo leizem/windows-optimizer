@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="HT Technology - Dashboard Premium de Otimização e Tweaks para Windows 10 e 11. Performance, Privacidade, Limpeza e muito mais." />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>HT Technology — Windows Optimizer Pro</title>
+
+  <!-- Security: no external resources loaded. TODO(security): Add CSP meta tag if deployed as a web app -->
+  <!-- Google Fonts via preload for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════ TITLEBAR ═══════════════════════════════════ -->
+  <header class="titlebar" role="banner">
+    <div class="titlebar-left">
+      <div class="logo-group">
+        <div class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#00d4ff"/>
+                <stop offset="100%" stop-color="#7c3aed"/>
+              </linearGradient>
+            </defs>
+            <rect width="40" height="40" rx="10" fill="url(#logoGrad)" opacity="0.15"/>
+            <path d="M8 12 L32 12 M20 12 L20 28 M8 28 L32 28" stroke="url(#logoGrad)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="20" cy="20" r="4" fill="url(#logoGrad)"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-brand">HT Technology</span>
+          <span class="logo-sub">Windows Optimizer Pro</span>
+        </div>
+      </div>
+
+      <nav class="nav-tabs" role="navigation" aria-label="Módulos principais">
+        <button class="nav-tab active" data-tab="diagnostico" id="tab-diagnostico">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 2H4a1 1 0 00-1 1v14a1 1 0 001 1h12a1 1 0 001-1V9"/><polyline points="9,2 9,9 16,9"/><line x1="7" y1="13" x2="13" y2="13"/><line x1="7" y1="16" x2="10" y2="16"/></svg>
+          Diagnóstico
+        </button>
+        <button class="nav-tab" data-tab="performance" id="tab-performance">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 4 10-12h-9l1-4z"/></svg>
+          Performance
+        </button>
+        <button class="nav-tab" data-tab="privacidade" id="tab-privacidade">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 2L3 6v5c0 4.42 3.02 8.55 7 9.54C14.98 19.55 18 15.42 18 11V6L10 2z"/></svg>
+          Privacidade
+        </button>
+        <button class="nav-tab" data-tab="limpeza" id="tab-limpeza">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h14M8 6V4h4v2M19 6l-1 12a2 2 0 01-2 2H4a2 2 0 01-2-2L1 6"/></svg>
+          Limpeza
+        </button>
+        <button class="nav-tab" data-tab="rede" id="tab-rede">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a15 15 0 010 16M10 2a15 15 0 000 16"/></svg>
+          Rede & DNS
+        </button>
+        <button class="nav-tab" data-tab="gaming" id="tab-gaming">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="16" height="11" rx="2"/><line x1="8" y1="10" x2="12" y2="10"/><line x1="10" y1="8" x2="10" y2="12"/><circle cx="14.5" cy="9.5" r="0.8" fill="currentColor"/><circle cx="14.5" cy="11.5" r="0.8" fill="currentColor"/></svg>
+          Gaming
+        </button>
+        <button class="nav-tab" data-tab="seguranca" id="tab-seguranca">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="14" height="8" rx="2"/><path d="M7 11V7a3 3 0 016 0v4"/></svg>
+          Segurança
+        </button>
+        <button class="nav-tab" data-tab="sistema" id="tab-sistema">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10" cy="10" r="3"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42"/></svg>
+          Sistema
+        </button>
+      </nav>
+    </div>
+
+    <div class="titlebar-right">
+      <div class="sys-info" id="sysInfo" aria-label="Informações do sistema">
+        <div class="sys-chip" id="cpuBadge" title="CPU Usage">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="4" width="8" height="8" rx="1"/><line x1="6" y1="1" x2="6" y2="3"/><line x1="10" y1="1" x2="10" y2="3"/><line x1="6" y1="13" x2="6" y2="15"/><line x1="10" y1="13" x2="10" y2="15"/><line x1="1" y1="6" x2="3" y2="6"/><line x1="1" y1="10" x2="3" y2="10"/><line x1="13" y1="6" x2="15" y2="6"/><line x1="13" y1="10" x2="15" y2="10"/></svg>
+          <span id="cpuVal">CPU</span>
+        </div>
+        <div class="sys-chip" id="ramBadge" title="RAM Usage">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1" y="4" width="14" height="8" rx="1"/><line x1="4" y1="4" x2="4" y2="12"/><line x1="8" y1="4" x2="8" y2="12"/><line x1="12" y1="4" x2="12" y2="12"/></svg>
+          <span id="ramVal">RAM</span>
+        </div>
+        <div class="sys-chip" id="osBadge" title="OS Version">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="2"/><path d="M1 5h14"/><circle cx="4" cy="3" r="0.8" fill="currentColor"/><circle cx="7" cy="3" r="0.8" fill="currentColor"/></svg>
+          <span id="osVal">Win 11</span>
+        </div>
+      </div>
+
+      <div class="titlebar-actions">
+        <!-- Botão de alternância de tema — ícone puro Lua / Sol -->
+        <button class="btn-theme-icon" id="btnTheme"
+          title="Mudar para Tema Claro ☀️"
+          aria-label="Ativar tema claro">
+          <!-- Lua: exibida quando tema escuro está ATIVO -->
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
+          </svg>
+          <!-- Sol: exibido quando tema claro está ATIVO -->
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1"  x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22"  x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1"  y1="12" x2="3"  y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36"/>
+            <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+
+        <!-- Exportar script PowerShell -->
+        <button class="action-btn" id="btnExport"
+          title="Exportar tweaks selecionados como script .ps1"
+          aria-label="Exportar script PowerShell">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M3 17h14M10 3v10M6 9l4 4 4-4"/>
+          </svg>
+          Exportar .ps1
+        </button>
+
+        <button class="action-btn" id="btnRestorePoint" title="Criar Ponto de Restauração" aria-label="Criar ponto de restauração">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10a7 7 0 1 0 4-6.33"/><polyline points="3,4 3,10 9,10"/></svg>
+          Restauração
+        </button>
+        <button class="action-btn accent" id="btnRunAll" title="Executar todas as otimizações marcadas" aria-label="Executar otimizações selecionadas">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 19,10 5,17"/></svg>
+          Executar Marcados
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════ PROGRESS BAR ═══════════════════════════════ -->
+  <div class="progress-strip" id="progressStrip" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-hidden="true">
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">Pronto</div>
+    <span class="progress-pct" id="progressPct"></span>
+  </div>
+
+  <!-- ═══════════════════════════════ STATS HEADER ═══════════════════════════════ -->
+  <section class="stats-row" aria-label="Resumo de otimizações">
+    <div class="stat-card">
+      <div class="stat-icon green" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-number" id="statApplied">0</span>
+        <span class="stat-label">Aplicados</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon blue" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-number" id="statPending">0</span>
+        <span class="stat-label">Pendentes</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon purple" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 4 10-12h-9l1-4z"/></svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-number" id="statScore">0%</span>
+        <span class="stat-label">Score Geral</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon amber" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-number" id="statSelected">0</span>
+        <span class="stat-label">Selecionados</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ MAIN CONTENT ═══════════════════════════════ -->
+  <main class="main-content" role="main">
+
+    <!-- ──────────── TAB: DIAGNÓSTICO & REPAROS ──────────── -->
+    <section class="tab-panel active" id="panel-diagnostico" aria-labelledby="tab-diagnostico">
+      <div class="panel-header">
+        <h1 class="panel-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 2H4a1 1 0 00-1 1v17a1 1 0 001 1h16a1 1 0 001-1V9"/><polyline points="9,2 9,9 16,9"/></svg>
+          Diagnóstico &amp; Reparos
+        </h1>
+        <p class="panel-desc">Ferramentas de diagnóstico, reparo e manutenção do sistema Windows</p>
+        <div class="panel-actions">
+          <button class="btn-select-all" data-panel="diagnostico" aria-label="Selecionar todos os tweaks do painel de diagnóstico">Selecionar Todos</button>
+          <button class="btn-clear-all" data-panel="diagnostico" aria-label="Desmarcar todos os tweaks do painel de diagnóstico">Limpar Seleção</button>
+        </div>
+      </div>
+      <div class="tweaks-grid" id="grid-diagnostico">
+
+        <article class="tweak-card featured" data-tweak="reparo_rapido" data-panel="diagnostico">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Reparo Rápido Completo</h2>
+              <span class="tweak-badge recommended">Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Reparo Rápido Completo">
+              <input type="checkbox" class="tweak-toggle" data-tweak="reparo_rapido" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Executa SFC, DISM e verificação de disco em sequência. Repara arquivos corrompidos do sistema automaticamente.</p>
+          <div class="tweak-tags"><span class="tag">SFC</span><span class="tag">DISM</span><span class="tag">Sistema</span></div>
+          <button class="tweak-run-btn" data-tweak="reparo_rapido" aria-label="Executar Reparo Rápido Completo agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="sfc_dism" data-panel="diagnostico">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">SFC / DISM Completo</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar SFC / DISM Completo">
+              <input type="checkbox" class="tweak-toggle" data-tweak="sfc_dism" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Verifica e restaura a integridade de arquivos do sistema via sfc /scannow e DISM /RestoreHealth.</p>
+          <div class="tweak-tags"><span class="tag">DISM</span><span class="tag">Integridade</span></div>
+          <button class="tweak-run-btn" data-tweak="sfc_dism" aria-label="Executar SFC DISM agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="chkdsk" data-panel="diagnostico">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M12 8v4l3 3"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Corrigir Erros de Disco (ChkDsk)</h2>
+              <span class="tweak-badge caution">Reboot Necessário</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Correção de Erros de Disco">
+              <input type="checkbox" class="tweak-toggle" data-tweak="chkdsk" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Agenda o CheckDisk para verificar e corrigir erros de sistema de arquivos e setores defeituosos no próximo reinício.</p>
+          <div class="tweak-tags"><span class="tag">Disco</span><span class="tag">NTFS</span></div>
+          <button class="tweak-run-btn" data-tweak="chkdsk" aria-label="Executar ChkDsk agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="limpeza_cache" data-panel="diagnostico">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Limpeza Total (Cache e VSS)</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Limpeza de Cache e VSS">
+              <input type="checkbox" class="tweak-toggle" data-tweak="limpeza_cache" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Remove caches temporários, logs antigos e cópias de sombra obsoletas. Libera espaço em disco significativamente.</p>
+          <div class="tweak-tags"><span class="tag">Cache</span><span class="tag">VSS</span><span class="tag">Temp</span></div>
+          <button class="tweak-run-btn" data-tweak="limpeza_cache" aria-label="Executar Limpeza de Cache agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="reparar_wmi" data-panel="diagnostico">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M6.34 17.66l-1.41 1.41M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M12 2v2M12 20v2"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Reparar Repositório WMI</h2>
+              <span class="tweak-badge caution">Avançado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Reparo de WMI">
+              <input type="checkbox" class="tweak-toggle" data-tweak="reparar_wmi" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Reconstrói o repositório WMI corrompido que causa falhas em scripts, diagnósticos e ferramentas administrativas.</p>
+          <div class="tweak-tags"><span class="tag">WMI</span><span class="tag">Admin</span></div>
+          <button class="tweak-run-btn" data-tweak="reparar_wmi" aria-label="Reparar WMI agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="reset_wupdate" data-panel="diagnostico">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 4-7.5"/><polyline points="3,4 3,12 11,12"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Reset Estrutural Windows Update</h2>
+              <span class="tweak-badge caution">Avançado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Reset do Windows Update">
+              <input type="checkbox" class="tweak-toggle" data-tweak="reset_wupdate" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Reinicia todos os componentes do Windows Update. Resolve erros 0x80070002, 0x800705b4 e outros códigos de falha.</p>
+          <div class="tweak-tags"><span class="tag">Update</span><span class="tag">BITS</span><span class="tag">Reset</span></div>
+          <button class="tweak-run-btn" data-tweak="reset_wupdate" aria-label="Resetar Windows Update agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="otimizar_rede" data-panel="diagnostico">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Otimização e Reset de Rede</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Otimização de Rede">
+              <input type="checkbox" class="tweak-toggle" data-tweak="otimizar_rede" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Reseta pilha TCP/IP, flush DNS, renova IP. Corrije problemas de conectividade e lentidão de rede.</p>
+          <div class="tweak-tags"><span class="tag">TCP/IP</span><span class="tag">DNS</span><span class="tag">Winsock</span></div>
+          <button class="tweak-run-btn" data-tweak="otimizar_rede" aria-label="Otimizar Rede agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="trim_defrag" data-panel="diagnostico">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Otimizar Armazenamento (TRIM/Defrag)</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar TRIM e Desfragmentação">
+              <input type="checkbox" class="tweak-toggle" data-tweak="trim_defrag" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Executa TRIM em SSDs ou desfragmenta HDDs. Melhora a velocidade de leitura e gravação no armazenamento.</p>
+          <div class="tweak-tags"><span class="tag">SSD</span><span class="tag">HDD</span><span class="tag">TRIM</span></div>
+          <button class="tweak-run-btn" data-tweak="trim_defrag" aria-label="Executar TRIM Defrag agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="limpar_drivers" data-panel="diagnostico">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Limpar Drivers Antigos (PNPUtil)</h2>
+              <span class="tweak-badge caution">Avançado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Limpeza de Drivers Antigos">
+              <input type="checkbox" class="tweak-toggle" data-tweak="limpar_drivers" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Remove drivers obsoletos do repositório do Windows. Reduz conflitos e libera espaço no diretório de drivers.</p>
+          <div class="tweak-tags"><span class="tag">Drivers</span><span class="tag">PNP</span></div>
+          <button class="tweak-run-btn" data-tweak="limpar_drivers" aria-label="Limpar Drivers agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="diagnostico_energia" data-panel="diagnostico">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 4 10-12h-9l1-4z"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Gerar Diagnóstico de Energia/Bateria</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Diagnóstico de Energia">
+              <input type="checkbox" class="tweak-toggle" data-tweak="diagnostico_energia" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Gera relatório detalhado de energia (powercfg /batteryreport e /energy). Identifica aplicativos que drenam bateria.</p>
+          <div class="tweak-tags"><span class="tag">Energia</span><span class="tag">Bateria</span><span class="tag">Relatório</span></div>
+          <button class="tweak-run-btn" data-tweak="diagnostico_energia" aria-label="Gerar Diagnóstico de Energia agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="event_log" data-panel="diagnostico">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Limpar Log de Eventos do Windows</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Limpeza de Logs de Eventos">
+              <input type="checkbox" class="tweak-toggle" data-tweak="event_log" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Limpa todos os logs do Visualizador de Eventos. Melhora a performance e libera espaço em disco.</p>
+          <div class="tweak-tags"><span class="tag">EventLog</span><span class="tag">Logs</span></div>
+          <button class="tweak-run-btn" data-tweak="event_log" aria-label="Limpar logs de eventos agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="prefetch" data-panel="diagnostico">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Limpar Prefetch e Superfetch</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Limpeza de Prefetch">
+              <input type="checkbox" class="tweak-toggle" data-tweak="prefetch" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Remove arquivos de pré-carregamento antigos. Útil após desinstalar programas ou após limpeza geral do sistema.</p>
+          <div class="tweak-tags"><span class="tag">Prefetch</span><span class="tag">Superfetch</span></div>
+          <button class="tweak-run-btn" data-tweak="prefetch" aria-label="Limpar Prefetch agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ──────────── TAB: HARDWARE & PERFORMANCE ──────────── -->
+    <section class="tab-panel" id="panel-performance" aria-labelledby="tab-performance">
+      <div class="panel-header">
+        <h1 class="panel-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L3 14h9l-1 4 10-12h-9l1-4z"/></svg>
+          Hardware &amp; Performance
+        </h1>
+        <p class="panel-desc">Tweaks avançados de CPU, RAM, GPU e I/O para máxima performance</p>
+        <div class="panel-actions">
+          <button class="btn-select-all" data-panel="performance">Selecionar Todos</button>
+          <button class="btn-clear-all" data-panel="performance">Limpar Seleção</button>
+        </div>
+      </div>
+      <div class="tweaks-grid" id="grid-performance">
+
+        <article class="tweak-card featured" data-tweak="perf_fso" data-panel="performance">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 4 10-12h-9l1-4z"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Tweaks de Performance e FSO</h2>
+              <span class="tweak-badge recommended">Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Tweaks de Performance FSO">
+              <input type="checkbox" class="tweak-toggle" data-tweak="perf_fso" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Ativa Fullscreen Optimizations, GameMode, Hardware-Accelerated GPU Scheduling (HAGS) e ajusta prioridades de CPU.</p>
+          <div class="tweak-tags"><span class="tag">FSO</span><span class="tag">HAGS</span><span class="tag">CPU</span><span class="tag">GPU</span></div>
+          <button class="tweak-run-btn" data-tweak="perf_fso" aria-label="Executar Tweaks de Performance FSO agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="latencia_rede" data-panel="performance">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6s4-2 11-2 11 2 11 2"/><path d="M1 12s4-2 11-2 11 2 11 2"/><path d="M1 18s4-2 11-2 11 2 11 2"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Otimizar Latência e Rede (Jogos)</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Otimização de Latência">
+              <input type="checkbox" class="tweak-toggle" data-tweak="latencia_rede" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Configura QoS, desativa Nagle Algorithm, ajusta Network Throttling Index e buffer TCP para reduzir latência.</p>
+          <div class="tweak-tags"><span class="tag">Ping</span><span class="tag">Nagle</span><span class="tag">QoS</span></div>
+          <button class="tweak-run-btn" data-tweak="latencia_rede" aria-label="Otimizar latência de rede agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="plano_max" data-panel="performance">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Injetar Plano Desempenho Máximo</h2>
+              <span class="tweak-badge caution">CPU Intensivo</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Plano de Máximo Desempenho">
+              <input type="checkbox" class="tweak-toggle" data-tweak="plano_max" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Ativa o plano de energia "Ultimate Performance" oculto do Windows. Elimina micro-stuttering e aumenta velocidade de resposta da CPU.</p>
+          <div class="tweak-tags"><span class="tag">Energia</span><span class="tag">CPU</span><span class="tag">Ultimate</span></div>
+          <button class="tweak-run-btn" data-tweak="plano_max" aria-label="Ativar Plano de Máximo Desempenho agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="bloatwares" data-panel="performance">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Remover Bloatwares (Apps Inúteis)</h2>
+              <span class="tweak-badge caution">Avançado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Remoção de Bloatwares">
+              <input type="checkbox" class="tweak-toggle" data-tweak="bloatwares" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Remove Xbox, Solitaire, Cortana, Disney+, Teams, OneDrive e outros apps pré-instalados desnecessários.</p>
+          <div class="tweak-tags"><span class="tag">Xbox</span><span class="tag">OneDrive</span><span class="tag">UWP</span></div>
+          <button class="tweak-run-btn" data-tweak="bloatwares" aria-label="Remover Bloatwares agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="inicializacao" data-panel="performance">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Mitigar Apps de Inicialização (Run)</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Mitigação de Apps de Inicialização">
+              <input type="checkbox" class="tweak-toggle" data-tweak="inicializacao" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa aplicativos desnecessários que iniciam com o Windows, reduzindo o tempo de boot significativamente.</p>
+          <div class="tweak-tags"><span class="tag">Startup</span><span class="tag">Boot</span><span class="tag">Run</span></div>
+          <button class="tweak-run-btn" data-tweak="inicializacao" aria-label="Mitigar Apps de Inicialização agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="config_maquina" data-panel="performance">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Configuração da Máquina (msconfig)</h2>
+              <span class="tweak-badge caution">Avançado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Configuração da Máquina">
+              <input type="checkbox" class="tweak-toggle" data-tweak="config_maquina" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Otimiza configurações do MSCONFIG, ajusta número de processadores no boot e habilita boot rápido.</p>
+          <div class="tweak-tags"><span class="tag">msconfig</span><span class="tag">Boot</span><span class="tag">CPU Cores</span></div>
+          <button class="tweak-run-btn" data-tweak="config_maquina" aria-label="Configurar Máquina agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="efeitos_visuais" data-panel="performance">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Opções de Desempenho Visual</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Otimização Visual">
+              <input type="checkbox" class="tweak-toggle" data-tweak="efeitos_visuais" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Configura efeitos visuais para máxima performance. Desativa animações, transparências e Aero Peek desnecessários.</p>
+          <div class="tweak-tags"><span class="tag">Aero</span><span class="tag">Animações</span><span class="tag">GPU</span></div>
+          <button class="tweak-run-btn" data-tweak="efeitos_visuais" aria-label="Otimizar Efeitos Visuais agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="sysmain" data-panel="performance">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Desativar SysMain (Superfetch)</h2>
+              <span class="tweak-badge caution">SSD Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Desativação do SysMain">
+              <input type="checkbox" class="tweak-toggle" data-tweak="sysmain" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa SysMain/Superfetch que causa uso excessivo de disco em SSDs. Recomendado apenas para sistemas com SSD.</p>
+          <div class="tweak-tags"><span class="tag">SysMain</span><span class="tag">RAM</span><span class="tag">Disco</span></div>
+          <button class="tweak-run-btn" data-tweak="sysmain" aria-label="Desativar SysMain agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="cache_ram" data-panel="performance">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Otimizar Cache da Memória RAM</h2>
+              <span class="tweak-badge recommended">Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Otimização de Cache RAM">
+              <input type="checkbox" class="tweak-toggle" data-tweak="cache_ram" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Ajusta Large System Cache, Clear Page File on Shutdown e otimiza o Working Set de processos em background.</p>
+          <div class="tweak-tags"><span class="tag">RAM</span><span class="tag">PageFile</span><span class="tag">Cache</span></div>
+          <button class="tweak-run-btn" data-tweak="cache_ram" aria-label="Otimizar Cache RAM agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="energy_throttle" data-panel="performance">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="7" x2="14" y2="7"/><line x1="10" y1="12" x2="14" y2="12"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Desativar Energy Throttling Global</h2>
+              <span class="tweak-badge caution">Bateria Intensivo</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Desativação de Energy Throttling">
+              <input type="checkbox" class="tweak-toggle" data-tweak="energy_throttle" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa o throttling de energia do Windows que limita performance de processos em background para economizar bateria.</p>
+          <div class="tweak-tags"><span class="tag">Throttle</span><span class="tag">CPU</span><span class="tag">Energia</span></div>
+          <button class="tweak-run-btn" data-tweak="energy_throttle" aria-label="Desativar Energy Throttling agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="irq_affinity" data-panel="performance">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 22a10 10 0 0 1-10-10"/><path d="M12 12m-3 0a3 3 0 1 0 6 0 3 3 0 0 0-6 0"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Afinidade de IRQ e MSI Mode</h2>
+              <span class="tweak-badge caution">Avançado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Afinidade de IRQ">
+              <input type="checkbox" class="tweak-toggle" data-tweak="irq_affinity" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Ativa MSI Mode para GPU e NIC, redistribui interrupções para reduzir latência de DPC e melhorar frametime.</p>
+          <div class="tweak-tags"><span class="tag">IRQ</span><span class="tag">MSI</span><span class="tag">DPC</span></div>
+          <button class="tweak-run-btn" data-tweak="irq_affinity" aria-label="Configurar IRQ MSI agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="timer_resolution" data-panel="performance">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Timer Resolution Global (0.5ms)</h2>
+              <span class="tweak-badge caution">Gaming Avançado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Timer Resolution">
+              <input type="checkbox" class="tweak-toggle" data-tweak="timer_resolution" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Força resolução de timer global de 0.5ms via BCDEDIT. Reduz variação de frametime em jogos e aplicações real-time.</p>
+          <div class="tweak-tags"><span class="tag">Timer</span><span class="tag">0.5ms</span><span class="tag">Frametime</span></div>
+          <button class="tweak-run-btn" data-tweak="timer_resolution" aria-label="Configurar Timer Resolution agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ──────────── TAB: PRIVACIDADE & SISTEMA ──────────── -->
+    <section class="tab-panel" id="panel-privacidade" aria-labelledby="tab-privacidade">
+      <div class="panel-header">
+        <h1 class="panel-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Privacidade &amp; Sistema
+        </h1>
+        <p class="panel-desc">Controle total sobre telemetria, rastreamento e dados enviados à Microsoft</p>
+        <div class="panel-actions">
+          <button class="btn-select-all" data-panel="privacidade">Selecionar Todos</button>
+          <button class="btn-clear-all" data-panel="privacidade">Limpar Seleção</button>
+        </div>
+      </div>
+      <div class="tweaks-grid" id="grid-privacidade">
+
+        <article class="tweak-card featured" data-tweak="telemetria" data-panel="privacidade">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Desativar Telemetria Completa</h2>
+              <span class="tweak-badge recommended">Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Desativação de Telemetria">
+              <input type="checkbox" class="tweak-toggle" data-tweak="telemetria" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa DiagTrack, Connected User Experiences, DataCollection e todos os serviços de telemetria da Microsoft.</p>
+          <div class="tweak-tags"><span class="tag">DiagTrack</span><span class="tag">Telemetria</span><span class="tag">GDPR</span></div>
+          <button class="tweak-run-btn" data-tweak="telemetria" aria-label="Desativar Telemetria agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="experiencia_usuario" data-panel="privacidade">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Desativar Experiência e Promos</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Desativação de Experiência e Promos">
+              <input type="checkbox" class="tweak-toggle" data-tweak="experiencia_usuario" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa sugestões de apps, promoções na tela de bloqueio, dicas do Windows e conteúdo patrocinado.</p>
+          <div class="tweak-tags"><span class="tag">Promos</span><span class="tag">Sugestões</span><span class="tag">Lock Screen</span></div>
+          <button class="tweak-run-btn" data-tweak="experiencia_usuario" aria-label="Desativar Experiência e Promos agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="copilot_bing" data-panel="privacidade">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Remover Copilot e Buscas no Bing</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Remoção de Copilot e Bing">
+              <input type="checkbox" class="tweak-toggle" data-tweak="copilot_bing" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Remove integração do Copilot, desativa pesquisa web no menu Iniciar via Bing e bloqueia envio de consultas para a nuvem.</p>
+          <div class="tweak-tags"><span class="tag">Copilot</span><span class="tag">Bing</span><span class="tag">AI</span></div>
+          <button class="tweak-run-btn" data-tweak="copilot_bing" aria-label="Remover Copilot e Bing agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="widgets" data-panel="privacidade">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Remover Widgets e Clima</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Remoção de Widgets">
+              <input type="checkbox" class="tweak-toggle" data-tweak="widgets" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Remove painel de Widgets e notícias do Windows 11. Elimina coleta de dados de notícias MSN e feeds patrocinados.</p>
+          <div class="tweak-tags"><span class="tag">Widgets</span><span class="tag">MSN</span><span class="tag">Notícias</span></div>
+          <button class="tweak-run-btn" data-tweak="widgets" aria-label="Remover Widgets agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="smartscreen" data-panel="privacidade">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="9" y1="12" x2="11" y2="14"/><line x1="15" y1="10" x2="11" y2="14"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Desativar SmartScreen Local</h2>
+              <span class="tweak-badge caution">Usuário Avançado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Desativação do SmartScreen">
+              <input type="checkbox" class="tweak-toggle" data-tweak="smartscreen" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa verificação online do SmartScreen que envia hash de executáveis para servidores Microsoft.</p>
+          <div class="tweak-tags"><span class="tag">SmartScreen</span><span class="tag">Filtro</span></div>
+          <button class="tweak-run-btn" data-tweak="smartscreen" aria-label="Desativar SmartScreen agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="protecao_disco" data-panel="privacidade">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Ativar Proteção do Disco C:</h2>
+              <span class="tweak-badge recommended">Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Proteção do Disco C">
+              <input type="checkbox" class="tweak-toggle" data-tweak="protecao_disco" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Habilita System Protection no disco C: para permitir criação de pontos de restauração automáticos antes de atualizações.</p>
+          <div class="tweak-tags"><span class="tag">Restauração</span><span class="tag">VSS</span><span class="tag">Proteção</span></div>
+          <button class="tweak-run-btn" data-tweak="protecao_disco" aria-label="Ativar Proteção do Disco agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="restauracao_sistema" data-panel="privacidade">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 4-7.5"/><polyline points="3,4 3,12 11,12"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Abrir Restauração do Sistema</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Abrir Restauração do Sistema">
+              <input type="checkbox" class="tweak-toggle" data-tweak="restauracao_sistema" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Abre o assistente de Restauração do Sistema para reverter configurações a um ponto anterior.</p>
+          <div class="tweak-tags"><span class="tag">Restauração</span><span class="tag">Rollback</span></div>
+          <button class="tweak-run-btn" data-tweak="restauracao_sistema" aria-label="Abrir Restauração do Sistema agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="hibernacao_ssd" data-panel="privacidade">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Desativar Hibernação (Liberar SSD)</h2>
+              <span class="tweak-badge caution">SSD Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Desativação de Hibernação">
+              <input type="checkbox" class="tweak-toggle" data-tweak="hibernacao_ssd" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa hibernação e remove hiberfil.sys. Libera gigabytes de espaço no SSD (equivalente ao tamanho da RAM).</p>
+          <div class="tweak-tags"><span class="tag">Hibernação</span><span class="tag">hiberfil.sys</span><span class="tag">SSD</span></div>
+          <button class="tweak-run-btn" data-tweak="hibernacao_ssd" aria-label="Desativar Hibernação agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="historico_atividade" data-panel="privacidade">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Bloquear Histórico de Atividades</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Bloqueio de Histórico">
+              <input type="checkbox" class="tweak-toggle" data-tweak="historico_atividade" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa Timeline e Activity History. Impede o Windows de coletar e enviar histórico de atividades para a Microsoft.</p>
+          <div class="tweak-tags"><span class="tag">Timeline</span><span class="tag">Histórico</span><span class="tag">Sync</span></div>
+          <button class="tweak-run-btn" data-tweak="historico_atividade" aria-label="Bloquear Histórico de Atividades agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="advertising_id" data-panel="privacidade">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Desativar ID de Anúncios e ID Técnico</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Desativação de ID de Anúncios">
+              <input type="checkbox" class="tweak-toggle" data-tweak="advertising_id" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa Advertising ID único por usuário e Machine ID técnico usado para rastreamento cross-device pela Microsoft.</p>
+          <div class="tweak-tags"><span class="tag">Ad ID</span><span class="tag">HWID</span><span class="tag">Rastreio</span></div>
+          <button class="tweak-run-btn" data-tweak="advertising_id" aria-label="Desativar ID de Anúncios agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="recall_ai" data-panel="privacidade">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Desativar Windows Recall e AI Features</h2>
+              <span class="tweak-badge recommended">Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Desativação do Windows Recall">
+              <input type="checkbox" class="tweak-toggle" data-tweak="recall_ai" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa Windows Recall (gravação de tela), AI Explorer e recursos que capturam snapshots da área de trabalho continuamente.</p>
+          <div class="tweak-tags"><span class="tag">Recall</span><span class="tag">AI</span><span class="tag">Snapshots</span></div>
+          <button class="tweak-run-btn" data-tweak="recall_ai" aria-label="Desativar Windows Recall agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="location_cam" data-panel="privacidade">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Bloquear Localização, Câmera e Microfone</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Bloqueio de Localização Câmera Microfone">
+              <input type="checkbox" class="tweak-toggle" data-tweak="location_cam" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Revoga permissões de acesso à localização GPS, câmera e microfone para apps UWP do sistema.</p>
+          <div class="tweak-tags"><span class="tag">GPS</span><span class="tag">Câmera</span><span class="tag">Microfone</span></div>
+          <button class="tweak-run-btn" data-tweak="location_cam" aria-label="Bloquear Localização e Câmera agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ──────────── TAB: LIMPEZA ──────────── -->
+    <section class="tab-panel" id="panel-limpeza" aria-labelledby="tab-limpeza">
+      <div class="panel-header">
+        <h1 class="panel-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+          Limpeza &amp; Manutenção
+        </h1>
+        <p class="panel-desc">Remoção profunda de arquivos temporários, lixo e dados desnecessários do sistema</p>
+        <div class="panel-actions">
+          <button class="btn-select-all" data-panel="limpeza">Selecionar Todos</button>
+          <button class="btn-clear-all" data-panel="limpeza">Limpar Seleção</button>
+        </div>
+      </div>
+      <div class="tweaks-grid" id="grid-limpeza">
+        <article class="tweak-card featured" data-tweak="temp_system" data-panel="limpeza">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Limpeza Profunda Arquivos Temporários</h2>
+              <span class="tweak-badge recommended">Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Limpeza Profunda de Arquivos Temporários">
+              <input type="checkbox" class="tweak-toggle" data-tweak="temp_system" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Limpa %TEMP%, C:\Windows\Temp, pasta de Downloads parciais, cache do Windows Update e arquivos .tmp/~$ e log.</p>
+          <div class="tweak-tags"><span class="tag">%TEMP%</span><span class="tag">WinTemp</span><span class="tag">Cache</span></div>
+          <button class="tweak-run-btn" data-tweak="temp_system" aria-label="Executar limpeza profunda agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="winsxs" data-panel="limpeza">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Compactar WinSxS e ComponentStore</h2>
+              <span class="tweak-badge caution">Lento</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Compactação de WinSxS">
+              <input type="checkbox" class="tweak-toggle" data-tweak="winsxs" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Executa DISM /Cleanup-Image /StartComponentCleanup. Remove componentes supercedidos de atualizações antigas.</p>
+          <div class="tweak-tags"><span class="tag">WinSxS</span><span class="tag">DISM</span><span class="tag">Componentes</span></div>
+          <button class="tweak-run-btn" data-tweak="winsxs" aria-label="Compactar WinSxS agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="recycle_bin" data-panel="limpeza">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Esvaziar Lixeira e Thumbnails</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Esvaziamento de Lixeira">
+              <input type="checkbox" class="tweak-toggle" data-tweak="recycle_bin" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Esvazia a Lixeira, limpa cache de miniaturas (thumbs.db) e ícones em todos os drives.</p>
+          <div class="tweak-tags"><span class="tag">Lixeira</span><span class="tag">Thumbnails</span></div>
+          <button class="tweak-run-btn" data-tweak="recycle_bin" aria-label="Esvaziar Lixeira agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="browser_cache" data-panel="limpeza">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Limpar Cache de Navegadores</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Limpeza de Cache de Navegadores">
+              <input type="checkbox" class="tweak-toggle" data-tweak="browser_cache" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Remove cache do Chrome, Edge, Firefox e Brave. Pode liberar vários GBs de espaço em disco.</p>
+          <div class="tweak-tags"><span class="tag">Chrome</span><span class="tag">Edge</span><span class="tag">Firefox</span></div>
+          <button class="tweak-run-btn" data-tweak="browser_cache" aria-label="Limpar Cache de Navegadores agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="update_cache" data-panel="limpeza">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Limpar Cache do Windows Update</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Limpeza de Cache do Windows Update">
+              <input type="checkbox" class="tweak-toggle" data-tweak="update_cache" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Remove pacotes de atualização baixados que ocupam espaço em SoftwareDistribution\Download.</p>
+          <div class="tweak-tags"><span class="tag">WU Cache</span><span class="tag">SoftwareDistribution</span></div>
+          <button class="tweak-run-btn" data-tweak="update_cache" aria-label="Limpar Cache do Windows Update agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="font_cache" data-panel="limpeza">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Reconstruir Cache de Fontes</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Reconstrução de Cache de Fontes">
+              <input type="checkbox" class="tweak-toggle" data-tweak="font_cache" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Recria o cache de fontes do Windows. Corrige problemas de fontes borradas, corrompidas ou com renderização incorreta.</p>
+          <div class="tweak-tags"><span class="tag">Fontes</span><span class="tag">DirectWrite</span></div>
+          <button class="tweak-run-btn" data-tweak="font_cache" aria-label="Reconstruir Cache de Fontes agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- ──────────── TAB: REDE & DNS ──────────── -->
+    <section class="tab-panel" id="panel-rede" aria-labelledby="tab-rede">
+      <div class="panel-header">
+        <h1 class="panel-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+          Rede &amp; DNS
+        </h1>
+        <p class="panel-desc">Otimizações avançadas de TCP/IP, DNS, QoS e conectividade de rede</p>
+        <div class="panel-actions">
+          <button class="btn-select-all" data-panel="rede">Selecionar Todos</button>
+          <button class="btn-clear-all" data-panel="rede">Limpar Seleção</button>
+        </div>
+      </div>
+      <div class="tweaks-grid" id="grid-rede">
+        <article class="tweak-card featured" data-tweak="dns_doh" data-panel="rede">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">DNS Seguro (DoH) - Cloudflare/Google</h2>
+              <span class="tweak-badge recommended">Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar DNS Seguro DoH">
+              <input type="checkbox" class="tweak-toggle" data-tweak="dns_doh" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Configura DNS-over-HTTPS com Cloudflare (1.1.1.1) ou Google (8.8.8.8). Protege queries DNS de interceptação.</p>
+          <div class="tweak-tags"><span class="tag">DoH</span><span class="tag">Cloudflare</span><span class="tag">Segurança</span></div>
+          <button class="tweak-run-btn" data-tweak="dns_doh" aria-label="Configurar DNS Seguro agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="tcp_autotuning" data-panel="rede">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">TCP Auto-Tuning e Receive Window</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar TCP Auto-Tuning">
+              <input type="checkbox" class="tweak-toggle" data-tweak="tcp_autotuning" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Otimiza janela de recepção TCP, habilita RSC, ECN e jumbo frames para maximizar throughput em conexões de alta velocidade.</p>
+          <div class="tweak-tags"><span class="tag">TCP</span><span class="tag">RWIN</span><span class="tag">ECN</span></div>
+          <button class="tweak-run-btn" data-tweak="tcp_autotuning" aria-label="Configurar TCP Auto-Tuning agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="ipv6_disable" data-panel="rede">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Desativar IPv6 (Apenas IPv4)</h2>
+              <span class="tweak-badge caution">Avançado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Desativação de IPv6">
+              <input type="checkbox" class="tweak-toggle" data-tweak="ipv6_disable" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa IPv6 para evitar problemas de resolução de nome em redes apenas IPv4. Recomendado para ambiente corporativo.</p>
+          <div class="tweak-tags"><span class="tag">IPv6</span><span class="tag">IPv4</span><span class="tag">Rede</span></div>
+          <button class="tweak-run-btn" data-tweak="ipv6_disable" aria-label="Desativar IPv6 agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="network_adapter" data-panel="rede">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Tweaks Avançados de Adaptador de Rede</h2>
+              <span class="tweak-badge caution">Avançado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Tweaks de Adaptador de Rede">
+              <input type="checkbox" class="tweak-toggle" data-tweak="network_adapter" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa offloading desnecessário, ajusta interrupt moderation e buffer de NIC para menor latência.</p>
+          <div class="tweak-tags"><span class="tag">NIC</span><span class="tag">Offload</span><span class="tag">Buffer</span></div>
+          <button class="tweak-run-btn" data-tweak="network_adapter" aria-label="Configurar Adaptador de Rede agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="firewall_rules" data-panel="rede">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Regras de Firewall Anti-Telemetria</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Regras Anti-Telemetria do Firewall">
+              <input type="checkbox" class="tweak-toggle" data-tweak="firewall_rules" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Cria regras no Windows Firewall para bloquear IPs de telemetria da Microsoft: vortex.data.microsoft.com, watson.telemetry.microsoft.com.</p>
+          <div class="tweak-tags"><span class="tag">Firewall</span><span class="tag">Block</span><span class="tag">Telemetria</span></div>
+          <button class="tweak-run-btn" data-tweak="firewall_rules" aria-label="Aplicar Regras de Firewall agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- ──────────── TAB: GAMING ──────────── -->
+    <section class="tab-panel" id="panel-gaming" aria-labelledby="tab-gaming">
+      <div class="panel-header">
+        <h1 class="panel-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="8" y1="12" x2="12" y2="12"/><line x1="10" y1="10" x2="10" y2="14"/><circle cx="16" cy="11" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg>
+          Gaming &amp; FPS
+        </h1>
+        <p class="panel-desc">Otimizações específicas para máxima performance em jogos — menos stutter, mais FPS</p>
+        <div class="panel-actions">
+          <button class="btn-select-all" data-panel="gaming">Selecionar Todos</button>
+          <button class="btn-clear-all" data-panel="gaming">Limpar Seleção</button>
+        </div>
+      </div>
+      <div class="tweaks-grid" id="grid-gaming">
+        <article class="tweak-card featured" data-tweak="game_mode" data-panel="gaming">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 4 10-12h-9l1-4z"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Game Mode + HAGS Completo</h2>
+              <span class="tweak-badge recommended">Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Game Mode e HAGS">
+              <input type="checkbox" class="tweak-toggle" data-tweak="game_mode" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Ativa Game Mode, Hardware-Accelerated GPU Scheduling, Variable Refresh Rate e optimiza prioridade de GPU para jogos.</p>
+          <div class="tweak-tags"><span class="tag">Game Mode</span><span class="tag">HAGS</span><span class="tag">VRR</span></div>
+          <button class="tweak-run-btn" data-tweak="game_mode" aria-label="Ativar Game Mode e HAGS agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="dx_shader" data-panel="gaming">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Limpar Cache de Shaders DirectX</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Limpeza de Shaders DirectX">
+              <input type="checkbox" class="tweak-toggle" data-tweak="dx_shader" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Remove cache corrompido de shaders DirectX e Vulkan. Elimina crashes e stuttering causados por cache de shader antigo.</p>
+          <div class="tweak-tags"><span class="tag">DirectX</span><span class="tag">Vulkan</span><span class="tag">Shaders</span></div>
+          <button class="tweak-run-btn" data-tweak="dx_shader" aria-label="Limpar Cache de Shaders agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="xbox_services" data-panel="gaming">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Remover Serviços Xbox Desnecessários</h2>
+              <span class="tweak-badge caution">Avançado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Remoção de Serviços Xbox">
+              <input type="checkbox" class="tweak-toggle" data-tweak="xbox_services" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Remove apps Xbox Game Bar, Xbox Identity, Xbox Accessory Management para quem não usa Xbox. Libera RAM e CPU.</p>
+          <div class="tweak-tags"><span class="tag">Xbox</span><span class="tag">Game Bar</span><span class="tag">UWP</span></div>
+          <button class="tweak-run-btn" data-tweak="xbox_services" aria-label="Remover Serviços Xbox agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="nvidia_tweaks" data-panel="gaming">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Tweaks de Registro NVIDIA/AMD</h2>
+              <span class="tweak-badge caution">Avançado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Tweaks de Registro GPU">
+              <input type="checkbox" class="tweak-toggle" data-tweak="nvidia_tweaks" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Aplica tweaks de registro para NVIDIA (PowerMizer, HAGS, PreRender) e AMD (Anti-Lag, Chill). Melhora FPS e reduz frametime.</p>
+          <div class="tweak-tags"><span class="tag">NVIDIA</span><span class="tag">AMD</span><span class="tag">Registro</span></div>
+          <button class="tweak-run-btn" data-tweak="nvidia_tweaks" aria-label="Aplicar Tweaks de GPU agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="cpu_priority" data-panel="gaming">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Prioridade de CPU para Jogos</h2>
+              <span class="tweak-badge recommended">Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Prioridade de CPU para Jogos">
+              <input type="checkbox" class="tweak-toggle" data-tweak="cpu_priority" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Configura Win32PrioritySeparation para máxima prioridade de CPU para processos em foreground. Reduz micro-pauses.</p>
+          <div class="tweak-tags"><span class="tag">CPU</span><span class="tag">Foreground</span><span class="tag">Priority</span></div>
+          <button class="tweak-run-btn" data-tweak="cpu_priority" aria-label="Configurar Prioridade de CPU agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="disable_fullscreen_opt" data-panel="gaming">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Desativar Fullscreen Optimizations Global</h2>
+              <span class="tweak-badge caution">Testar por Jogo</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Desativação de Fullscreen Optimizations">
+              <input type="checkbox" class="tweak-toggle" data-tweak="disable_fullscreen_opt" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa Fullscreen Optimizations globalmente. Em alguns jogos pode reduzir input lag em tela cheia exclusiva.</p>
+          <div class="tweak-tags"><span class="tag">Fullscreen</span><span class="tag">Exclusive</span><span class="tag">Input Lag</span></div>
+          <button class="tweak-run-btn" data-tweak="disable_fullscreen_opt" aria-label="Desativar Fullscreen Optimizations agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- ──────────── TAB: SEGURANÇA ──────────── -->
+    <section class="tab-panel" id="panel-seguranca" aria-labelledby="tab-seguranca">
+      <div class="panel-header">
+        <h1 class="panel-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Segurança &amp; Proteção
+        </h1>
+        <p class="panel-desc">Hardening de segurança, proteção contra malware e configurações de defesa do Windows</p>
+        <div class="panel-actions">
+          <button class="btn-select-all" data-panel="seguranca">Selecionar Todos</button>
+          <button class="btn-clear-all" data-panel="seguranca">Limpar Seleção</button>
+        </div>
+      </div>
+      <div class="tweaks-grid" id="grid-seguranca">
+        <article class="tweak-card featured" data-tweak="defender_update" data-panel="seguranca">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Atualizar Definições do Windows Defender</h2>
+              <span class="tweak-badge recommended">Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Atualização do Windows Defender">
+              <input type="checkbox" class="tweak-toggle" data-tweak="defender_update" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Força atualização das definições de vírus e spyware do Windows Defender para a versão mais recente.</p>
+          <div class="tweak-tags"><span class="tag">Defender</span><span class="tag">Antivírus</span><span class="tag">Definições</span></div>
+          <button class="tweak-run-btn" data-tweak="defender_update" aria-label="Atualizar Defender agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="uac_level" data-panel="seguranca">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="12" y1="11" x2="12" y2="16"/><line x1="9" y1="14" x2="15" y2="14"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Configurar Nível de UAC</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Configuração de UAC">
+              <input type="checkbox" class="tweak-toggle" data-tweak="uac_level" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Define o nível do Controle de Conta de Usuário (UAC) para o nível recomendado - notifica apenas em alterações do sistema.</p>
+          <div class="tweak-tags"><span class="tag">UAC</span><span class="tag">Admin</span><span class="tag">Permissões</span></div>
+          <button class="tweak-run-btn" data-tweak="uac_level" aria-label="Configurar UAC agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="exploit_protection" data-panel="seguranca">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Habilitar Exploit Protection</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Exploit Protection">
+              <input type="checkbox" class="tweak-toggle" data-tweak="exploit_protection" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Ativa mitigações de exploit: DEP, ASLR, SEHOP, Control Flow Guard. Aumenta resistência a ataques de memória.</p>
+          <div class="tweak-tags"><span class="tag">DEP</span><span class="tag">ASLR</span><span class="tag">CFG</span></div>
+          <button class="tweak-run-btn" data-tweak="exploit_protection" aria-label="Habilitar Exploit Protection agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="rdp_disable" data-panel="seguranca">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Desativar RDP (Área de Trabalho Remota)</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Desativação de RDP">
+              <input type="checkbox" class="tweak-toggle" data-tweak="rdp_disable" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa Remote Desktop Protocol para reduzir superfície de ataque. Ideal para máquinas pessoais sem acesso remoto.</p>
+          <div class="tweak-tags"><span class="tag">RDP</span><span class="tag">Remoto</span><span class="tag">Porta 3389</span></div>
+          <button class="tweak-run-btn" data-tweak="rdp_disable" aria-label="Desativar RDP agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- ──────────── TAB: SISTEMA ──────────── -->
+    <section class="tab-panel" id="panel-sistema" aria-labelledby="tab-sistema">
+      <div class="panel-header">
+        <h1 class="panel-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M6.34 17.66l-1.41 1.41M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M12 2v2M12 20v2"/></svg>
+          Sistema &amp; Interface
+        </h1>
+        <p class="panel-desc">Configurações de interface, registro e comportamento geral do sistema operacional</p>
+        <div class="panel-actions">
+          <button class="btn-select-all" data-panel="sistema">Selecionar Todos</button>
+          <button class="btn-clear-all" data-panel="sistema">Limpar Seleção</button>
+        </div>
+      </div>
+      <div class="tweaks-grid" id="grid-sistema">
+        <article class="tweak-card featured" data-tweak="dark_mode" data-panel="sistema">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Forçar Modo Escuro Global</h2>
+              <span class="tweak-badge recommended">Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Modo Escuro Global">
+              <input type="checkbox" class="tweak-toggle" data-tweak="dark_mode" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Ativa tema escuro para Sistema e Aplicativos via registro. Sincroniza modo escuro em todo o Windows.</p>
+          <div class="tweak-tags"><span class="tag">Dark Mode</span><span class="tag">Tema</span><span class="tag">UI</span></div>
+          <button class="tweak-run-btn" data-tweak="dark_mode" aria-label="Forçar Modo Escuro agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="taskbar_clean" data-panel="sistema">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="17" width="18" height="4" rx="1"/><path d="M3 13h18M8 17V13M16 17V13"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Limpar e Centralizar Barra de Tarefas</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Limpeza da Barra de Tarefas">
+              <input type="checkbox" class="tweak-toggle" data-tweak="taskbar_clean" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Remove ícones desnecessários da Taskbar, ajusta posição e limpa área de notificação do sistema.</p>
+          <div class="tweak-tags"><span class="tag">Taskbar</span><span class="tag">Systray</span><span class="tag">UI</span></div>
+          <button class="tweak-run-btn" data-tweak="taskbar_clean" aria-label="Limpar Barra de Tarefas agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="context_menu" data-panel="sistema">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Menu de Contexto Clássico (Win 10 Style)</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Menu de Contexto Clássico">
+              <input type="checkbox" class="tweak-toggle" data-tweak="context_menu" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Restaura o menu de contexto completo do Windows 10 no Explorer do Windows 11 (sem "Mostrar mais opções").</p>
+          <div class="tweak-tags"><span class="tag">Context Menu</span><span class="tag">Explorer</span><span class="tag">Win 11</span></div>
+          <button class="tweak-run-btn" data-tweak="context_menu" aria-label="Restaurar Menu de Contexto Clássico agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="num_lock" data-panel="sistema">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 8v4M7 16h2M12 8v8M17 8l-2 4 2 4"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">NumLock Ativo na Inicialização</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar NumLock na Inicialização">
+              <input type="checkbox" class="tweak-toggle" data-tweak="num_lock" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Mantém NumLock ativado automaticamente em toda inicialização do Windows via registro.</p>
+          <div class="tweak-tags"><span class="tag">NumLock</span><span class="tag">Teclado</span><span class="tag">Boot</span></div>
+          <button class="tweak-run-btn" data-tweak="num_lock" aria-label="Ativar NumLock no Boot agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="show_extensions" data-panel="sistema">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Exibir Extensões de Arquivo e Pastas Ocultas</h2>
+              <span class="tweak-badge recommended">Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Exibição de Extensões de Arquivo">
+              <input type="checkbox" class="tweak-toggle" data-tweak="show_extensions" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Exibe extensões de arquivo ocultas e pastas de sistema. Essencial para segurança e gerenciamento de arquivos.</p>
+          <div class="tweak-tags"><span class="tag">Explorer</span><span class="tag">Extensões</span><span class="tag">Segurança</span></div>
+          <button class="tweak-run-btn" data-tweak="show_extensions" aria-label="Exibir Extensões de Arquivo agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+        <article class="tweak-card" data-tweak="auto_updates" data-panel="sistema">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 0 9 9 9 9 0 0 0 9-9"/><path d="M21 3l-3 3-3-3"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Configurar Atualizações Automáticas</h2>
+              <span class="tweak-badge caution">Avançado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Configuração de Atualizações Automáticas">
+              <input type="checkbox" class="tweak-toggle" data-tweak="auto_updates" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Configura Windows Update para notificar antes de baixar. Mantém controle sobre quando instalar atualizações.</p>
+          <div class="tweak-tags"><span class="tag">Updates</span><span class="tag">WU</span><span class="tag">Notificação</span></div>
+          <button class="tweak-run-btn" data-tweak="auto_updates" aria-label="Configurar Atualizações Automáticas agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════ TERMINAL LOG ═══════════════════════════════ -->
+  <footer class="terminal-footer" role="contentinfo">
+    <div class="terminal-header">
+      <div class="terminal-dots" aria-hidden="true">
+        <span class="dot red"></span>
+        <span class="dot amber"></span>
+        <span class="dot green"></span>
+      </div>
+      <span class="terminal-title">Terminal Técnico — HT Technology</span>
+      <div class="terminal-controls">
+        <button class="term-btn" id="btnCopyLog" aria-label="Copiar log do terminal">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="9" height="11" rx="1"/><path d="M3 3H2a1 1 0 00-1 1v9a1 1 0 001 1h8a1 1 0 001-1v-1"/></svg>
+          Copiar
+        </button>
+        <button class="term-btn" id="btnClearLog" aria-label="Limpar log do terminal">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="3 4 4 4 13 4"/><path d="M11 4V3a1 1 0 00-1-1H6a1 1 0 00-1 1v1M13 4l-1 9a1 1 0 01-1 1H5a1 1 0 01-1-1L3 4"/></svg>
+          Limpar
+        </button>
+      </div>
+    </div>
+    <div class="terminal-body" id="terminalLog" role="log" aria-live="polite" aria-label="Log de execução">
+      <div class="term-line"><span class="term-prompt">❯</span> <span class="term-text info">HT Technology Windows Optimizer Pro — Iniciado em 19/06/2026</span></div>
+      <div class="term-line"><span class="term-prompt">❯</span> <span class="term-text success">Sistema pronto. Selecione os tweaks desejados e clique em Executar.</span></div>
+      <div class="term-line"><span class="term-prompt">❯</span> <span class="term-text warn">AVISO: Sempre crie um Ponto de Restauração antes de aplicar tweaks.</span></div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════ NOTIFICATION TOAST ═══════════════════════════════ -->
+  <div class="toast-container" id="toastContainer" aria-live="assertive" role="status"></div>
+
+  <!-- ═══════════════════════════════ CONFIRM MODAL ═══════════════════════════════ -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-box">
+      <div class="modal-icon" id="modalIcon" aria-hidden="true"></div>
+      <h2 class="modal-title" id="modalTitle">Confirmar Ação</h2>
+      <p class="modal-body" id="modalBody">Deseja executar este tweak?</p>
+      <div class="modal-actions">
+        <button class="modal-btn cancel" id="modalCancel">Cancelar</button>
+        <button class="modal-btn confirm" id="modalConfirm">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

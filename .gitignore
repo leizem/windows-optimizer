@@ -1,0 +1,58 @@
+# HT Technology — Windows Optimizer Pro
+# .gitignore
+
+# Node / npm (se usado no futuro)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnp
+.pnp.js
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+.env
+.env.local
+*.pyc
+*.pyo
+
+# PowerShell logs e relatórios gerados
+*.log
+HT-Optimizer-Relatorio*.html
+
+# Relatórios gerados na Área de Trabalho
+battery-report.html
+energy-report.html
+
+# Scripts PS1 exportados pelo dashboard (não são parte do repo)
+HT-Optimizer-[0-9]*.ps1
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+
+# Editor artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# Screenshots temporários (manter apenas o original)
+Screenshot 2026-06-19 163901.png
+
+# SQLite (backend futuro)
+*.db
+*.sqlite
+*.sqlite3
