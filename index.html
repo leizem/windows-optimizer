@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="HT Technology - Dashboard Premium de Otimização e Tweaks para Windows 10 e 11. Performance, Privacidade, Limpeza e muito mais." />
+  <meta name="description" content="HT Technology - Dashboard Premium de Otimização e Tweaks para Windows 10 e 11. Performance, Privacidade, Limpeza e muito mais. v2.2" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>HT Technology — Windows Optimizer Pro</title>
+  <title>HT Technology — Windows Optimizer Pro v2.2</title>
 
   <!-- Security: no external resources loaded. TODO(security): Add CSP meta tag if deployed as a web app -->
   <!-- Google Fonts via preload for performance -->
@@ -36,7 +36,7 @@
         </div>
         <div class="logo-text">
           <span class="logo-brand">HT Technology</span>
-          <span class="logo-sub">Windows Optimizer Pro</span>
+          <span class="logo-sub">Windows Optimizer Pro <span class="version-badge">v2.2</span></span>
         </div>
       </div>
 
@@ -73,6 +73,11 @@
           <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10" cy="10" r="3"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42"/></svg>
           Sistema
         </button>
+        <button class="nav-tab" data-tab="perfis" id="tab-perfis">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="16" height="16" rx="3"/><path d="M7 10h6M7 6h6M7 14h4"/></svg>
+          Perfis
+          <span class="tab-new-badge">NOVO</span>
+        </button>
       </nav>
     </div>
 
@@ -90,6 +95,12 @@
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="2"/><path d="M1 5h14"/><circle cx="4" cy="3" r="0.8" fill="currentColor"/><circle cx="7" cy="3" r="0.8" fill="currentColor"/></svg>
           <span id="osVal">Win 11</span>
         </div>
+      </div>
+
+      <!-- Barra de busca de tweaks -->
+      <div class="search-wrap" role="search">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="7" cy="7" r="5"/><line x1="11" y1="11" x2="14" y2="14"/></svg>
+        <input type="search" class="search-input" id="tweakSearch" placeholder="Buscar tweak..." aria-label="Buscar tweaks" autocomplete="off" />
       </div>
 
       <div class="titlebar-actions">
@@ -1561,6 +1572,243 @@
       </div>
     </section>
 
+    <!-- ──────────── TAB: PERFIS ──────────── -->
+    <section class="tab-panel" id="panel-perfis" aria-labelledby="tab-perfis">
+      <div class="panel-header">
+        <h1 class="panel-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 12h10M7 7h10M7 17h6"/></svg>
+          Perfis de Otimização
+          <span class="badge-new-inline">NOVO v2.2</span>
+        </h1>
+        <p class="panel-desc">Aplique conjuntos predefinidos de tweaks com um clique — Gaming, Office ou Servidor</p>
+      </div>
+
+      <!-- PERFIS CARDS -->
+      <div class="profiles-grid">
+
+        <!-- GAMING -->
+        <div class="profile-card gaming-card" id="profileGaming">
+          <div class="profile-header">
+            <div class="profile-icon">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="28" height="18" rx="4"/><line x1="10" y1="16" x2="16" y2="16"/><line x1="13" y1="13" x2="13" y2="19"/><circle cx="22" cy="14" r="1.5" fill="currentColor"/><circle cx="25" cy="17" r="1.5" fill="currentColor"/></svg>
+            </div>
+            <div class="profile-info">
+              <h2 class="profile-title">Gaming Pro</h2>
+              <span class="profile-subtitle">Máximo FPS e mínima latência</span>
+            </div>
+            <div class="profile-badge">12 tweaks</div>
+          </div>
+          <p class="profile-desc">Ativa Game Mode, HAGS, Timer Resolution, desativa energy throttling, remove Xbox bloatware, otimiza prioridade de CPU e GPU. Ideal para gamers que querem cada frame possível.</p>
+          <div class="profile-tweaks">
+            <span class="ptag">Game Mode</span><span class="ptag">HAGS</span><span class="ptag">Timer 0.5ms</span><span class="ptag">CPU Priority</span><span class="ptag">VBS Toggle</span><span class="ptag">GPU Tweaks</span><span class="ptag">DirectX Cache</span><span class="ptag">Energy Throttle</span><span class="ptag">Low Latency</span><span class="ptag">FSO</span><span class="ptag">Plano Ultimate</span><span class="ptag">QoS Off</span>
+          </div>
+          <div class="profile-score">
+            <div class="score-ring" data-score="92">
+              <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="24" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="5"/><circle cx="30" cy="30" r="24" fill="none" stroke="#10d97e" stroke-width="5" stroke-dasharray="138.2" stroke-dashoffset="11.1" stroke-linecap="round" transform="rotate(-90 30 30)"/></svg>
+              <span class="score-val">92</span>
+            </div>
+            <div class="score-info"><span class="score-label">Score Gaming</span><span class="score-sub">Estimado após aplicar</span></div>
+          </div>
+          <button class="btn-profile-apply" id="btnApplyGaming" data-profile="gaming">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Aplicar Perfil Gaming
+          </button>
+        </div>
+
+        <!-- OFFICE -->
+        <div class="profile-card office-card" id="profileOffice">
+          <div class="profile-header">
+            <div class="profile-icon">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="24" height="26" rx="2"/><line x1="9" y1="10" x2="23" y2="10"/><line x1="9" y1="15" x2="23" y2="15"/><line x1="9" y1="20" x2="17" y2="20"/></svg>
+            </div>
+            <div class="profile-info">
+              <h2 class="profile-title">Office &amp; Produtividade</h2>
+              <span class="profile-subtitle">Estabilidade e privacidade</span>
+            </div>
+            <div class="profile-badge office">10 tweaks</div>
+          </div>
+          <p class="profile-desc">Foco em privacidade, limpeza e estabilidade. Desativa telemetria, Recall AI, bloatware. Otimiza inicialização e memória sem comprometer compatibilidade de apps.</p>
+          <div class="profile-tweaks">
+            <span class="ptag">Telemetria Off</span><span class="ptag">Recall AI Off</span><span class="ptag">Bloatwares</span><span class="ptag">Startup Apps</span><span class="ptag">RAM Cache</span><span class="ptag">Visual Effects</span><span class="ptag">Dark Mode</span><span class="ptag">Taskbar Clean</span><span class="ptag">Extensions</span><span class="ptag">Ad ID Off</span>
+          </div>
+          <div class="profile-score">
+            <div class="score-ring" data-score="78">
+              <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="24" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="5"/><circle cx="30" cy="30" r="24" fill="none" stroke="#3b82f6" stroke-width="5" stroke-dasharray="138.2" stroke-dashoffset="30.4" stroke-linecap="round" transform="rotate(-90 30 30)"/></svg>
+              <span class="score-val">78</span>
+            </div>
+            <div class="score-info"><span class="score-label">Score Office</span><span class="score-sub">Estimado após aplicar</span></div>
+          </div>
+          <button class="btn-profile-apply office" id="btnApplyOffice" data-profile="office">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Aplicar Perfil Office
+          </button>
+        </div>
+
+        <!-- SERVIDOR -->
+        <div class="profile-card server-card" id="profileServer">
+          <div class="profile-header">
+            <div class="profile-icon">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="28" height="10" rx="2"/><rect x="2" y="18" width="28" height="10" rx="2"/><circle cx="7" cy="9" r="1.5" fill="currentColor"/><circle cx="7" cy="23" r="1.5" fill="currentColor"/></svg>
+            </div>
+            <div class="profile-info">
+              <h2 class="profile-title">Servidor &amp; Headless</h2>
+              <span class="profile-subtitle">Máxima performance contínua</span>
+            </div>
+            <div class="profile-badge server">8 tweaks</div>
+          </div>
+          <p class="profile-desc">Para máquinas de trabalho 24/7 ou servidores locais. Desativa animações, hibernação, SysMain, agendamento de atualizações forçadas. Plano Ultimate Performance ativo.</p>
+          <div class="profile-tweaks">
+            <span class="ptag">Ultimate Perf</span><span class="ptag">SysMain Off</span><span class="ptag">Hibernação Off</span><span class="ptag">WU Manual</span><span class="ptag">Visual Mínimo</span><span class="ptag">RDP Config</span><span class="ptag">Energy Throttle</span><span class="ptag">TCP Tuning</span>
+          </div>
+          <div class="profile-score">
+            <div class="score-ring" data-score="85">
+              <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="24" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="5"/><circle cx="30" cy="30" r="24" fill="none" stroke="#f59e0b" stroke-width="5" stroke-dasharray="138.2" stroke-dashoffset="20.7" stroke-linecap="round" transform="rotate(-90 30 30)"/></svg>
+              <span class="score-val">85</span>
+            </div>
+            <div class="score-info"><span class="score-label">Score Servidor</span><span class="score-sub">Estimado após aplicar</span></div>
+          </div>
+          <button class="btn-profile-apply server" id="btnApplyServer" data-profile="server">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Aplicar Perfil Servidor
+          </button>
+        </div>
+
+      </div>
+
+      <!-- NOVOS TWEAKS v2.2 -->
+      <div class="panel-header" style="margin-top:28px">
+        <h1 class="panel-title" style="font-size:15px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Novos Tweaks — Windows 11 2026
+          <span class="badge-new-inline">NOVO v2.2</span>
+        </h1>
+        <p class="panel-desc">Tweaks exclusivos para as últimas builds do Windows 11 (25H2/26H2)</p>
+      </div>
+      <div class="tweaks-grid">
+
+        <article class="tweak-card featured" data-tweak="vbs_disable" data-panel="perfis">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="9" y1="12" x2="15" y2="12"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Desativar VBS / Memory Integrity</h2>
+              <span class="tweak-badge caution">Gaming +5~20% FPS</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Desativação de VBS">
+              <input type="checkbox" class="tweak-toggle" data-tweak="vbs_disable" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Desativa Virtualization-Based Security e Memory Integrity. Ganho de 5-20% em FPS em jogos CPU-bound. Trade-off: reduz isolamento de memória de kernel.</p>
+          <div class="tweak-tags"><span class="tag">VBS</span><span class="tag">HVCI</span><span class="tag">Gaming</span><span class="tag new-tag">NOVO</span></div>
+          <button class="tweak-run-btn" data-tweak="vbs_disable" aria-label="Desativar VBS agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="low_latency_profile" data-panel="perfis">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Low Latency Profile (Win11 2026)</h2>
+              <span class="tweak-badge recommended">Recomendado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Low Latency Profile">
+              <input type="checkbox" class="tweak-toggle" data-tweak="low_latency_profile" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Habilita Low Latency Profile via ViVeTool (feature IDs 60716524, 61391826). CPU bursts de curta duração para abertura de apps e interação com shell. Sistema mais responsivo.</p>
+          <div class="tweak-tags"><span class="tag">ViVeTool</span><span class="tag">Shell</span><span class="tag">Latência</span><span class="tag new-tag">NOVO</span></div>
+          <button class="tweak-run-btn" data-tweak="low_latency_profile" aria-label="Ativar Low Latency Profile agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="winget_update" data-panel="perfis">
+          <div class="tweak-header">
+            <div class="tweak-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Atualizar Todos Apps via Winget</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Atualização via Winget">
+              <input type="checkbox" class="tweak-toggle" data-tweak="winget_update" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Executa winget upgrade --all --silent para atualizar todos os aplicativos instalados de uma vez. Mantém o sistema seguro com as últimas versões.</p>
+          <div class="tweak-tags"><span class="tag">Winget</span><span class="tag">Apps</span><span class="tag">Update</span><span class="tag new-tag">NOVO</span></div>
+          <button class="tweak-run-btn" data-tweak="winget_update" aria-label="Atualizar Apps via Winget agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="copilot_sidebar" data-panel="perfis">
+          <div class="tweak-header">
+            <div class="tweak-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 9l6 6M15 9l-6 6"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Desativar Copilot Sidebar (2026)</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Desativação do Copilot Sidebar">
+              <input type="checkbox" class="tweak-toggle" data-tweak="copilot_sidebar" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Remove o botão e sidebar do Copilot da barra de tarefas usando o novo método 2026 via registro e política de grupo. Não afeta outras funcionalidades do Windows.</p>
+          <div class="tweak-tags"><span class="tag">Copilot</span><span class="tag">Sidebar</span><span class="tag">Taskbar</span><span class="tag new-tag">NOVO</span></div>
+          <button class="tweak-run-btn" data-tweak="copilot_sidebar" aria-label="Desativar Copilot Sidebar agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="cpu_boost" data-panel="perfis">
+          <div class="tweak-header">
+            <div class="tweak-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 4 10-12h-9l1-4z"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">CPU Boost Mode Agressivo</h2>
+              <span class="tweak-badge caution">Avançado</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar CPU Boost Agressivo">
+              <input type="checkbox" class="tweak-toggle" data-tweak="cpu_boost" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Configura CPU Boost Mode para Aggressive via powercfg. Mantém clock speeds consistentemente altos. Aumenta consumo de energia mas elimina throttling em cargas burst.</p>
+          <div class="tweak-tags"><span class="tag">CPU Boost</span><span class="tag">P-State</span><span class="tag">powercfg</span><span class="tag new-tag">NOVO</span></div>
+          <button class="tweak-run-btn" data-tweak="cpu_boost" aria-label="Ativar CPU Boost Agressivo agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+        <article class="tweak-card" data-tweak="pagefile_auto" data-panel="perfis">
+          <div class="tweak-header">
+            <div class="tweak-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+            <div class="tweak-meta">
+              <h2 class="tweak-title">Otimizar PageFile Automaticamente</h2>
+              <span class="tweak-badge safe">Seguro</span>
+            </div>
+            <label class="toggle-switch" aria-label="Ativar Otimização de PageFile">
+              <input type="checkbox" class="tweak-toggle" data-tweak="pagefile_auto" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="tweak-desc">Configura PageFile para tamanho gerenciado automaticamente pelo sistema. Previne crashes por falta de memória virtual e melhora estabilidade geral.</p>
+          <div class="tweak-tags"><span class="tag">PageFile</span><span class="tag">RAM Virtual</span><span class="tag">Estabilidade</span><span class="tag new-tag">NOVO</span></div>
+          <button class="tweak-run-btn" data-tweak="pagefile_auto" aria-label="Otimizar PageFile agora">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3,2 14,8 3,14"/></svg>
+            Executar Agora
+          </button>
+        </article>
+
+      </div>
+    </section>
+
   </main>
 
   <!-- ═══════════════════════════════ TERMINAL LOG ═══════════════════════════════ -->
@@ -1584,9 +1832,9 @@
       </div>
     </div>
     <div class="terminal-body" id="terminalLog" role="log" aria-live="polite" aria-label="Log de execução">
-      <div class="term-line"><span class="term-prompt">❯</span> <span class="term-text info">HT Technology Windows Optimizer Pro — Iniciado em 19/06/2026</span></div>
-      <div class="term-line"><span class="term-prompt">❯</span> <span class="term-text success">Sistema pronto. Selecione os tweaks desejados e clique em Executar.</span></div>
-      <div class="term-line"><span class="term-prompt">❯</span> <span class="term-text warn">AVISO: Sempre crie um Ponto de Restauração antes de aplicar tweaks.</span></div>
+      <div class="term-line"><span class="term-prompt">❯</span> <span class="term-text info">HT Technology Windows Optimizer Pro v2.2 — Iniciado em 19/06/2026</span></div>
+      <div class="term-line"><span class="term-prompt">❯</span> <span class="term-text success">v2.2 — Perfis de otimização, VBS Toggle, Low Latency Profile, busca de tweaks.</span></div>
+      <div class="term-line"><span class="term-prompt">❯</span> <span class="term-text warn">AVISO: Sempre crie um Ponto de Restauração antes de aplicar tweaks avançados.</span></div>
     </div>
   </footer>
 

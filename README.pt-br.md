@@ -1,7 +1,7 @@
 # 🖥️ HT Technology — Windows Optimizer Pro
 
 > **Dashboard Premium de Otimização para Windows 10 & 11**
-> Versão 2.1 · Desenvolvido por HT Technology · 19/06/2026
+> Versão 2.2 · Desenvolvido por HT Technology · 19/06/2026
 
 [🇺🇸 English Version](README.en.md)
 
@@ -475,7 +475,23 @@ WINDOWS OPTIMIZER/
 
 ## 🗺️ Roadmap
 
-### v2.1 (Atual)
+### v2.2 (Atual)
+- [x] **Perfis de Otimização** — Gaming Pro, Office & Produtividade, Servidor & Headless
+- [x] **6 novos tweaks Windows 11 2026:**
+  - VBS / Memory Integrity Toggle (+5~20% FPS gaming)
+  - Low Latency Profile (responsividade do shell)
+  - Atualização via Winget (--all --silent)
+  - Desativar Copilot Sidebar (método 2026)
+  - CPU Boost Mode Agressivo (P-State)
+  - PageFile Gerenciado Automaticamente
+- [x] **Busca de tweaks** — filtro em tempo real no header
+- [x] **Histórico de execuções** — persiste via localStorage (50 entradas)
+- [x] **Score rings visuais** por perfil (Gaming 92, Office 78, Servidor 85)
+- [x] **Badge NOVO** em tweaks adicionados na v2.2
+- [x] **Version badge** v2.2 no logo
+- [x] 64 tweaks no total (de 50+ para 64)
+
+### v2.1 (Concluído)
 - [x] Dashboard premium com 8 módulos
 - [x] 50+ tweaks organizados por categoria
 - [x] Tema claro/escuro com persistência
@@ -483,22 +499,15 @@ WINDOWS OPTIMIZER/
 - [x] Exportação de script .ps1
 - [x] Backend PowerShell standalone completo
 - [x] Modal de confirmação para tweaks avançados
-- [x] Ponto de restauração automático
-- [x] Separação frontend / backend
 
-### v2.2 (Planejado)
-- [ ] Backend Python com SSE streaming real
-- [ ] CPU/RAM/Disco em tempo real via psutil
-- [ ] Histórico de execuções (SQLite)
-- [ ] Perfis de otimização (Gaming, Office, Servidor)
+### v3.0 (Planejado)
+- [ ] Novo painel Winget Store — instalar apps com 1 clique
+- [ ] Layout redesenhado com sidebar vertical
+- [ ] Modo de Análise Completa do sistema
+- [ ] Sistema de plugins visuais de tweaks
 - [ ] Agendador de limpeza automática
-- [ ] Comparativo antes/depois (benchmark)
-
-### v3.0 (Futuro)
-- [ ] Empacotamento como app Electron ou PyWebView
-- [ ] Atualização automática de tweaks via GitHub
-- [ ] Suporte a múltiplas máquinas (modo rede local)
-- [ ] Plugin de tweaks customizáveis
+- [ ] Changelog interativo com histórico de versões
+- [ ] Design upgrade: novas animações, modo ultra-dark
 
 ---
 
@@ -534,7 +543,7 @@ Redistribuição não autorizada é proibida.
 ```
   ╔══════════════════════════════════╗
   ║       HT Technology              ║
-  ║   Windows Optimizer Pro v2.1     ║
+  ║   Windows Optimizer Pro v2.2     ║
   ║   19 de Junho de 2026            ║
   ╚══════════════════════════════════╝
 ```

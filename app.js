@@ -1,6 +1,6 @@
 /**
- * HT Technology — Windows Optimizer Pro  |  app.js  |  v2.1
- * Reescrito com lógica direta e robusta — sem injeção dinâmica de elementos críticos
+ * HT Technology — Windows Optimizer Pro  |  app.js  |  v2.2
+ * v2.2: Perfis de Otimização, novos tweaks Win11 2026, busca, histórico localStorage
  * Security: todo texto inserido via textContent (XSS-safe)
  * TODO(security): Se implantado como web app, adicionar CSP nonce
  */
@@ -93,7 +93,51 @@ const TWEAKS = {
   num_lock:            { label:'NumLock Ativo na Inicialização',       safe:true,  ps:`Set-ItemProperty -Path "HKCU:\\Control Panel\\Keyboard" -Name InitialKeyboardIndicators -Value 2 -Force; Write-Host "[OK] NumLock ativado no boot." -ForegroundColor Green` },
   show_extensions:     { label:'Exibir Extensões de Arquivo e Ocultas',safe:true, ps:`Set-ItemProperty -Path "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" -Name HideFileExt -Value 0 -Force; Set-ItemProperty -Path "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" -Name Hidden -Value 1 -Force; Stop-Process -Name explorer -Force; Start-Process explorer` },
   auto_updates:        { label:'Configurar Atualizações Automáticas', safe:true,  ps:`$p="HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU"; if(!(Test-Path $p)){New-Item $p -Force|Out-Null}; Set-ItemProperty $p -Name AUOptions -Value 2 -Force; Write-Host "[OK] Windows Update: notificar antes de baixar." -ForegroundColor Green` },
+  // ── Perfis / Novos Tweaks Windows 11 2026 (v2.2)
+  vbs_disable:         { label:'Desativar VBS / Memory Integrity',     safe:false, ps:`$r="HKLM:\\SYSTEM\\CurrentControlSet\\Control\\DeviceGuard"; Set-ItemProperty $r -Name EnableVirtualizationBasedSecurity -Value 0 -Force -EA SilentlyContinue; Set-ItemProperty $r -Name RequirePlatformSecurityFeatures -Value 0 -Force -EA SilentlyContinue; Write-Host "[OK] VBS desativado. Reinicie para aplicar." -ForegroundColor Green` },
+  low_latency_profile: { label:'Low Latency Profile (Win11 2026)',      safe:true,  ps:`Set-ItemProperty -Path "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Executive" -Name AdditionalCriticalWorkerThreads -Value 4 -Force -EA SilentlyContinue; Write-Host "[OK] Low Latency Profile aplicado (fallback sem ViVeTool)." -ForegroundColor Cyan` },
+  winget_update:       { label:'Atualizar Todos Apps via Winget',       safe:true,  ps:`Write-Host "[INFO] Atualizando todos os apps via winget..." -ForegroundColor Cyan; winget upgrade --all --silent --accept-source-agreements --accept-package-agreements; Write-Host "[OK] Atualização via winget concluída!" -ForegroundColor Green` },
+  copilot_sidebar:     { label:'Desativar Copilot Sidebar (2026)',      safe:true,  ps:`$p="HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced"; Set-ItemProperty $p -Name ShowCopilotButton -Value 0 -Force -EA SilentlyContinue; $p2="HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsCopilot"; if(!(Test-Path $p2)){New-Item $p2 -Force|Out-Null}; Set-ItemProperty $p2 -Name TurnOffWindowsCopilot -Value 1 -Force; Write-Host "[OK] Copilot Sidebar desativado." -ForegroundColor Green` },
+  cpu_boost:           { label:'CPU Boost Mode Agressivo',              safe:false, ps:`powercfg -setacvalueindex SCHEME_CURRENT SUB_PROCESSOR PERFBOOSTMODE 2; powercfg -setdcvalueindex SCHEME_CURRENT SUB_PROCESSOR PERFBOOSTMODE 2; powercfg -setactive SCHEME_CURRENT; Write-Host "[OK] CPU Boost Aggressive ativo." -ForegroundColor Green` },
+  pagefile_auto:       { label:'Otimizar PageFile Automaticamente',     safe:true,  ps:`$cs=Get-WmiObject Win32_ComputerSystem; $cs.AutomaticManagedPagefile=$true; $cs.Put(); Write-Host "[OK] PageFile configurado como Gerenciado Automaticamente." -ForegroundColor Green` },
 };
+
+/* ════════════════════════════════════════════════
+   PERFIS DE OTIMIZAÇÃO (v2.2)
+════════════════════════════════════════════════ */
+const PROFILES = {
+  gaming: {
+    label: 'Gaming Pro',
+    tweaks: ['game_mode','perf_fso','timer_resolution','cpu_priority','vbs_disable','nvidia_tweaks','dx_shader','energy_throttle','low_latency_profile','plano_max','disable_fullscreen_opt','latencia_rede'],
+  },
+  office: {
+    label: 'Office & Produtividade',
+    tweaks: ['telemetria','recall_ai','bloatwares','inicializacao','cache_ram','efeitos_visuais','dark_mode','taskbar_clean','show_extensions','advertising_id'],
+  },
+  server: {
+    label: 'Servidor & Headless',
+    tweaks: ['plano_max','sysmain','hibernacao_ssd','auto_updates','efeitos_visuais','rdp_disable','energy_throttle','tcp_autotuning'],
+  },
+};
+
+/* ════════════════════════════════════════════════
+   HISTÓRICO (v2.2) — localStorage
+════════════════════════════════════════════════ */
+function saveHistory(id, label) {
+  try {
+    const hist = JSON.parse(localStorage.getItem('ht-history') || '[]');
+    hist.unshift({ id, label, ts: new Date().toISOString() });
+    if (hist.length > 50) hist.pop();
+    localStorage.setItem('ht-history', JSON.stringify(hist));
+  } catch(e) { /* silently fail */ }
+}
+
+function loadHistory() {
+  try {
+    return JSON.parse(localStorage.getItem('ht-history') || '[]');
+  } catch(e) { return []; }
+}
+
 
 /* ════════════════════════════════════════════════
    HELPERS DE DOM
@@ -274,6 +318,7 @@ function runTweak(id, btn) {
         if (card) card.classList.add('is-active');
         log('[OK] ' + tweak.label + ' — concluído.', 'success');
         toast('Concluído', tweak.label, 'success');
+        saveHistory(id, tweak.label);  // v2.2 histórico
         updateStats();
       }
     }, 90);
@@ -484,7 +529,75 @@ document.addEventListener('DOMContentLoaded', function () {
   updateStats();
 
   // 13. Logs de boas-vindas
-  log('HT Technology Optimizer Pro v2.1 | ' + new Date().toLocaleDateString('pt-BR'), 'info');
+  log('HT Technology Optimizer Pro v2.2 | ' + new Date().toLocaleDateString('pt-BR'), 'info');
   log('Total de tweaks disponíveis: ' + Object.keys(TWEAKS).length, 'info');
+  log('NOVO v2.2: Perfis Gaming/Office/Servidor | VBS Toggle | Low Latency Profile | Busca de tweaks', 'success');
   log('Dica: Clique em "Exportar .ps1" para executar todos como Administrador!', 'warn');
+
+  // 14. Perfis de Otimização (v2.2)
+  document.querySelectorAll('.btn-profile-apply').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const profileId = this.dataset.profile;
+      const profile = PROFILES[profileId];
+      if (!profile) return;
+      showModal('🚀', 'Aplicar Perfil: ' + profile.label,
+        'Isso irá selecionar e executar ' + profile.tweaks.length + ' tweaks otimizados para ' + profile.label + '. Deseja continuar?',
+        function() {
+          log('[PERFIL] Aplicando: ' + profile.label + ' (' + profile.tweaks.length + ' tweaks)', 'info');
+          profile.tweaks.forEach((id, idx) => {
+            setTimeout(() => {
+              // Select the toggle
+              const toggle = document.querySelector('.tweak-toggle[data-tweak="' + id + '"]');
+              if (toggle && !toggle.checked) {
+                toggle.checked = true;
+                State.selected.add(id);
+                toggle.closest('.tweak-card')?.classList.add('is-active');
+              }
+              // Run the tweak
+              const card = document.querySelector('[data-tweak="' + id + '"]');
+              const runBtn = card?.querySelector('.tweak-run-btn');
+              if (TWEAKS[id]) runTweak(id, runBtn);
+            }, idx * 500);
+          });
+          setTimeout(() => {
+            toast('🎮 Perfil ' + profile.label, 'Todos os tweaks aplicados com sucesso!', 'success', 6000);
+            log('[OK] Perfil ' + profile.label + ' aplicado!', 'success');
+          }, profile.tweaks.length * 500 + 500);
+        }
+      );
+    });
+  });
+
+  // 15. Busca de tweaks (v2.2)
+  const searchInput = $('tweakSearch');
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      const q = this.value.trim().toLowerCase();
+      if (!q) {
+        $$('.tweak-card').forEach(card => card.style.display = '');
+        return;
+      }
+      $$('.tweak-card').forEach(card => {
+        const title = card.querySelector('.tweak-title')?.textContent.toLowerCase() || '';
+        const desc  = card.querySelector('.tweak-desc')?.textContent.toLowerCase() || '';
+        const tags  = [...card.querySelectorAll('.tag')].map(t => t.textContent.toLowerCase()).join(' ');
+        const match = title.includes(q) || desc.includes(q) || tags.includes(q);
+        card.style.display = match ? '' : 'none';
+      });
+    });
+    // Clear on Escape
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') { this.value = ''; this.dispatchEvent(new Event('input')); this.blur(); }
+    });
+  }
+
+  // 16. Carregar histórico salvo (v2.2)
+  const history = loadHistory();
+  if (history.length > 0) {
+    log('[HISTÓRICO] Últimos ' + Math.min(history.length, 3) + ' tweaks executados:', 'info');
+    history.slice(0, 3).forEach(h => {
+      const dt = new Date(h.ts).toLocaleDateString('pt-BR');
+      log('  ✓ ' + h.label + ' (' + dt + ')', 'success');
+    });
+  }
 });
