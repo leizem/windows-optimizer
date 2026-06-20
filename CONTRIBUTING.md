@@ -77,4 +77,4 @@ style: improves W panel visuals
 
 ---
 
-*HT Technology — feito com ❤️ para a comunidade / made with ❤️ for the community*
+*HT Technology — feito com dedicação para a comunidade / made with dedication for the community*

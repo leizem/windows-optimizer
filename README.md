@@ -147,8 +147,8 @@ MIT License — use, modifique e distribua à vontade, com créditos.
 
 <div align="center">
 
-**Feito com ❤️ pela HT Technology para a comunidade Windows**  
-*Made with ❤️ by HT Technology for the Windows community*
+**Feito com dedicação pela HT Technology para a comunidade Windows**  
+*Made with dedication by HT Technology for the Windows community*
 
 [![GitHub Stars](https://img.shields.io/github/stars/leizem/windows-optimizer?style=social)](https://github.com/leizem/windows-optimizer)
 
