@@ -56,3 +56,10 @@ Screenshot 2026-06-19 163901.png
 *.db
 *.sqlite
 *.sqlite3
+
+# ── Arquivos internos de desenvolvimento ─────────────────────────
+# Mantidos apenas na branch dev-internal, nunca no main público
+development/
+REPORT.md
+frontend/
+bsod-log/
