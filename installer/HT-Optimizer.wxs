@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  HT Technology — Windows Optimizer Pro v3.0
+  WiX Toolset v3 Source File
+  Bilingual: Portuguese (Brazil) + English
+  Generates: HT-Technology-WindowsOptimizer-Pro-v3.0.msi
+
+  Diretório de instalação: totalmente configurável pelo usuário via InstallDirDlg.
+  O usuário escolhe QUALQUER pasta durante a instalação.
+  Padrão sugerido: C:\Program Files\HT Technology\Windows Optimizer Pro\
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+
+  <!-- ══════════════════════════════════════════════════════════
+       PRODUCT DEFINITION
+  ══════════════════════════════════════════════════════════ -->
+  <Product
+    Id="D46788A1-6300-4448-84D5-688566898143"
+    Name="HT Technology Windows Optimizer Pro"
+    Language="1046"
+    Version="3.0.0.0"
+    Manufacturer="HT Technology"
+    UpgradeCode="A7B3C2D1-E4F5-6789-ABCD-EF1234567890">
+
+    <!-- ── Package ─────────────────────────────────────────── -->
+    <Package
+      Id="*"
+      InstallerVersion="500"
+      Compressed="yes"
+      InstallScope="perMachine"
+      Description="Dashboard premium de otimizacao para Windows 10 e 11 — Premium optimization dashboard for Windows 10 and 11"
+      Comments="HT Technology Windows Optimizer Pro v3.0 — feito com dedicacao para a comunidade Windows. Made with dedication for the Windows community."
+      Keywords="windows;optimizer;performance;privacy;tweaks;gaming;cleaner;ht technology"
+      Manufacturer="HT Technology"
+      Languages="1046,1033" />
+
+    <!-- ── Compression ─────────────────────────────────────── -->
+    <MediaTemplate EmbedCab="yes" CompressionLevel="high" />
+
+    <!-- ── Upgrade: versões anteriores são removidas automaticamente -->
+    <MajorUpgrade
+      DowngradeErrorMessage="Uma versao mais recente do [ProductName] ja esta instalada. / A newer version of [ProductName] is already installed."
+      AllowSameVersionUpgrades="no"
+      Schedule="afterInstallInitialize" />
+
+    <!-- ── OS mínimo: Windows 10 ──────────────────────────── -->
+    <Condition Message="Este aplicativo requer Windows 10 ou superior. / This application requires Windows 10 or later.">
+      <![CDATA[Installed OR (VersionNT >= 603)]]>
+    </Condition>
+
+    <!-- ── Product icon ───────────────────────────────────── -->
+    <Icon Id="AppIcon.ico" SourceFile="assets\icon.ico" />
+
+    <!-- ══════════════════════════════════════════════════════
+         PROPRIEDADES DE UI E INSTALAÇÃO
+         WIXUI_INSTALLDIR aponta para INSTALLDIR, que é o ponto
+         raiz que o usuário pode alterar livremente no diálogo
+         "Pasta de Destino" (InstallDirDlg).
+    ══════════════════════════════════════════════════════ -->
+    <Property Id="WIXUI_INSTALLDIR"    Value="INSTALLDIR" />
+    <Property Id="ARPPRODUCTICON"      Value="AppIcon.ico" />
+    <Property Id="ARPHELPLINK"         Value="https://github.com/leizem/windows-optimizer" />
+    <Property Id="ARPURLINFOABOUT"     Value="https://github.com/leizem/windows-optimizer" />
+    <Property Id="ARPURLUPDATEINFO"    Value="https://github.com/leizem/windows-optimizer/releases" />
+    <Property Id="ARPNOREPAIR"         Value="1" />
+    <!-- Permite alterar o diretório de instalação na linha de comando:
+         msiexec /i setup.msi INSTALLDIR="D:\MinhaPasta\" -->
+
+    <!-- ══════════════════════════════════════════════════════
+         ESTRUTURA DE DIRETÓRIOS
+         INSTALLDIR é o único nó configurável — o usuário escolhe
+         onde instalar e TUDO vai para essa pasta diretamente.
+    ══════════════════════════════════════════════════════ -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+
+      <!-- Sugestão padrão: C:\Program Files\HT Technology\Windows Optimizer Pro -->
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="ManufacturerDir" Name="HT Technology">
+          <!-- INSTALLDIR = pasta raiz do app, editável pelo usuário -->
+          <Directory Id="INSTALLDIR" Name="Windows Optimizer Pro">
+            <Directory Id="BackendDir"        Name="backend">
+              <Directory Id="BackendScriptsDir" Name="scripts" />
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <!-- Atalho na Área de Trabalho -->
+      <Directory Id="DesktopFolder" Name="Desktop" />
+
+      <!-- Menu Iniciar -->
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="AppMenuFolder" Name="HT Technology Windows Optimizer Pro" />
+      </Directory>
+
+    </Directory>
+
+    <!-- ══════════════════════════════════════════════════════
+         FEATURES
+    ══════════════════════════════════════════════════════ -->
+    <Feature
+      Id="ProductFeature"
+      Title="HT Technology Windows Optimizer Pro"
+      Description="Dashboard de otimizacao para Windows 10 e 11 / Optimization dashboard for Windows 10 and 11"
+      Level="1"
+      ConfigurableDirectory="INSTALLDIR"
+      AllowAdvertise="no"
+      InstallDefault="local"
+      Display="expand">
+
+      <ComponentRef Id="CompMainFiles" />
+      <ComponentRef Id="CompLauncher"  />
+      <ComponentRef Id="CompWelcome"   />
+      <ComponentRef Id="CompDocs"      />
+      <ComponentRef Id="CompRegistry"  />
+      <ComponentRef Id="CompShortcuts" />
+      <ComponentRef Id="CompBackend"   />
+
+    </Feature>
+
+    <!-- ══════════════════════════════════════════════════════
+         COMPONENTS — todos instalados em [INSTALLDIR]
+         Os caminhos finais respeitam a pasta que o usuário
+         escolheu no assistente.
+    ══════════════════════════════════════════════════════ -->
+    <DirectoryRef Id="INSTALLDIR">
+
+      <!-- ── Arquivos principais ────────────────────────── -->
+      <Component Id="CompMainFiles" Guid="5627C2F8-6618-4D63-8C22-774930A3E089" Win64="yes">
+        <File Id="FileIndexHtml"  Source="..\index.html"               KeyPath="yes" />
+        <File Id="FileStyleCss"   Source="..\style.css" />
+        <File Id="FileAppJs"      Source="..\app.js" />
+        <File Id="FileBackendPs1" Source="..\HT-Optimizer-Backend.ps1" />
+      </Component>
+
+      <!-- ── Launcher ──────────────────────────────────── -->
+      <Component Id="CompLauncher" Guid="B610210A-623C-4246-B188-5BB02E714C89" Win64="yes">
+        <File Id="FileLauncher" Source="Launch-HT-Optimizer.bat" KeyPath="yes" />
+      </Component>
+
+      <!-- ── Welcome / README bilingue ─────────────────── -->
+      <Component Id="CompWelcome" Guid="09B9A65C-E1A8-449A-A8D7-DF50FF69FB90" Win64="yes">
+        <File Id="FileWelcome" Source="Welcome.html" KeyPath="yes" />
+      </Component>
+
+      <!-- ── Documentação ──────────────────────────────── -->
+      <Component Id="CompDocs" Guid="BB74C212-CA97-4B97-A18A-55490DC2D00B" Win64="yes">
+        <File Id="FileReadme"       Source="..\README.md"       KeyPath="yes" />
+        <File Id="FileReadmePtBr"   Source="..\README.pt-br.md" />
+        <File Id="FileReadmeEn"     Source="..\README.en.md" />
+        <File Id="FileSecurity"     Source="..\SECURITY.md" />
+        <File Id="FileContributing" Source="..\CONTRIBUTING.md" />
+      </Component>
+
+      <!-- ── Registro: grava o INSTALLDIR real escolhido ── -->
+      <Component Id="CompRegistry" Guid="BA47FABB-557B-45F6-9E23-7E418B56F9C0" Win64="yes">
+        <RegistryValue
+          Id="RegInstallPath"
+          Root="HKLM"
+          Key="SOFTWARE\HTTechnology\WindowsOptimizerPro"
+          Name="InstallPath"
+          Type="string"
+          Value="[INSTALLDIR]"
+          KeyPath="yes" />
+        <RegistryValue Root="HKLM"
+          Key="SOFTWARE\HTTechnology\WindowsOptimizerPro"
+          Name="Version"   Type="string" Value="3.0.0" />
+        <RegistryValue Root="HKLM"
+          Key="SOFTWARE\HTTechnology\WindowsOptimizerPro"
+          Name="Publisher" Type="string" Value="HT Technology" />
+        <RegistryValue Root="HKLM"
+          Key="SOFTWARE\HTTechnology\WindowsOptimizerPro"
+          Name="GitHubURL" Type="string"
+          Value="https://github.com/leizem/windows-optimizer" />
+      </Component>
+
+      <!-- ── Atalhos (Desktop + Start Menu) ────────────── -->
+      <Component Id="CompShortcuts" Guid="FA1949BA-DA9C-4670-9C4A-FB46AD6D5F4E" Win64="yes">
+
+        <!-- Atalho: Área de Trabalho -->
+        <Shortcut Id="ShortcutDesktop"
+          Directory="DesktopFolder"
+          Name="Windows Optimizer Pro"
+          Description="HT Technology Windows Optimizer Pro — Dashboard para Windows 10/11"
+          Target="[INSTALLDIR]Launch-HT-Optimizer.bat"
+          WorkingDirectory="INSTALLDIR"
+          Icon="AppIcon.ico" IconIndex="0" />
+
+        <!-- Atalho: Menu Iniciar — Abrir -->
+        <Shortcut Id="ShortcutStartApp"
+          Directory="AppMenuFolder"
+          Name="Windows Optimizer Pro"
+          Description="HT Technology Windows Optimizer Pro — Dashboard para Windows 10/11"
+          Target="[INSTALLDIR]Launch-HT-Optimizer.bat"
+          WorkingDirectory="INSTALLDIR"
+          Icon="AppIcon.ico" IconIndex="0" />
+
+        <!-- Atalho: Menu Iniciar — Welcome Guide -->
+        <Shortcut Id="ShortcutStartWelcome"
+          Directory="AppMenuFolder"
+          Name="Guia de Boas-vindas (Welcome Guide)"
+          Description="PT-BR + EN getting started guide"
+          Target="[INSTALLDIR]Welcome.html"
+          WorkingDirectory="INSTALLDIR" />
+
+        <!-- Atalho: Menu Iniciar — Desinstalar -->
+        <Shortcut Id="ShortcutStartUninstall"
+          Directory="AppMenuFolder"
+          Name="Desinstalar (Uninstall)"
+          Description="Remover HT Technology Windows Optimizer Pro"
+          Target="[SystemFolder]msiexec.exe"
+          Arguments="/x [ProductCode]" />
+
+        <!-- Limpa pasta do Menu Iniciar na desinstalação -->
+        <RemoveFolder Id="RemoveAppMenuFolder"
+          Directory="AppMenuFolder" On="uninstall" />
+
+        <RegistryValue Root="HKCU"
+          Key="SOFTWARE\HTTechnology\WindowsOptimizerPro\Shortcuts"
+          Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+
+    </DirectoryRef>
+
+    <!-- ── Backend (pasta vazia, para scripts futuros) ── -->
+    <DirectoryRef Id="BackendScriptsDir">
+      <Component Id="CompBackend" Guid="7CF96274-F67B-42B9-941E-E37227EB27AA" Win64="yes">
+        <CreateFolder />
+        <RegistryValue Root="HKCU"
+          Key="SOFTWARE\HTTechnology\WindowsOptimizerPro\Backend"
+          Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <!-- ══════════════════════════════════════════════════════
+         UI — WixUI_InstallDir
+         Fluxo de diálogos:
+           Welcome → Licença → [PASTA DESTINO] → Confirmar → Progresso → Concluir
+         O usuário escolhe qualquer caminho no 3º diálogo.
+    ══════════════════════════════════════════════════════ -->
+    <UIRef Id="WixUI_InstallDir" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+
+    <!-- Licença MIT bilingue exibida no LicenseAgreementDlg -->
+    <WixVariable Id="WixUILicenseRtf"  Value="assets\License.rtf" />
+    <!-- Banner 493x58 px no topo de todos os diálogos -->
+    <WixVariable Id="WixUIBannerBmp"   Value="assets\wix-banner.bmp" />
+    <!-- Imagem 493x312 px no WelcomeDlg e ExitDlg -->
+    <WixVariable Id="WixUIDialogBmp"   Value="assets\wix-dialog.bmp" />
+
+    <!-- ══════════════════════════════════════════════════════
+         AÇÃO PÓS-INSTALAÇÃO
+         Checkbox no ExitDlg: "Abrir guia de boas-vindas"
+         Quando marcado, abre [INSTALLDIR]\Welcome.html no
+         navegador padrão com WixShellExec.
+    ══════════════════════════════════════════════════════ -->
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT"
+              Value="Abrir guia de boas-vindas / Open welcome guide" />
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
+
+    <!-- SetProperty define WixShellExecTarget em runtime com o
+         INSTALLDIR real (que pode ter sido alterado pelo usuário) -->
+    <CustomAction Id="SetWelcomeTarget"
+                  Property="WixShellExecTarget"
+                  Value="[INSTALLDIR]Welcome.html" />
+    <CustomAction Id="LaunchWelcome"
+                  BinaryKey="WixCA"
+                  DllEntry="WixShellExec"
+                  Impersonate="yes" />
+
+    <InstallExecuteSequence>
+      <Custom Action="SetWelcomeTarget" Before="LaunchWelcome">
+        <![CDATA[NOT Installed AND WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 AND UILevel > 2]]>
+      </Custom>
+      <Custom Action="LaunchWelcome" After="InstallFinalize">
+        <![CDATA[NOT Installed AND WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 AND UILevel > 2]]>
+      </Custom>
+    </InstallExecuteSequence>
+
+  </Product>
+</Wix>
