@@ -63,3 +63,8 @@ development/
 REPORT.md
 frontend/
 bsod-log/
+
+# ── Build do instalador (binários compilados) ─────────────────────
+# O instalador compilado fica apenas no GitHub Releases
+dist/
+installer/assets/*.png

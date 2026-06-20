@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HT Technology — Windows Optimizer Pro v3.0 · Bem-vindo!</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:  #10d97e;
+      --cyan:   #00d4ff;
+      --purple: #7c3aed;
+      --blue:   #3b82f6;
+      --amber:  #f59e0b;
+      --bg:     #0d1117;
+      --card:   #161b22;
+      --border: rgba(255,255,255,.08);
+      --text:   #e6edf3;
+      --muted:  #7d8590;
+      --sub:    #8b949e;
+    }
+
+    body {
+      font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Hero ────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 32px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(16,217,126,.12), transparent);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(16,217,126,.3);
+      background: rgba(16,217,126,.08);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.7); }
+    }
+    .hero-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .logo-icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--green), var(--cyan));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 0 32px rgba(16,217,126,.25);
+    }
+    .logo-text { text-align: left; }
+    .logo-brand {
+      font-size: 22px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--green), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .logo-sub {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .hero p.lead {
+      font-size: 14px;
+      color: var(--sub);
+      max-width: 580px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 4px;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 24px;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      background: linear-gradient(135deg, var(--green), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label { font-size: 10px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+
+    /* ── Lang Tabs ───────────────────────────── */
+    .lang-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 20px 32px 0;
+    }
+    .lang-tab {
+      padding: 8px 22px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .lang-tab.active {
+      background: linear-gradient(135deg, var(--green), var(--cyan));
+      border-color: transparent;
+      color: #000;
+    }
+
+    /* ── Content ─────────────────────────────── */
+    .content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px 32px 48px;
+    }
+    .lang-panel { display: none; }
+    .lang-panel.active { display: block; }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--muted);
+      margin-bottom: 14px;
+      margin-top: 28px;
+    }
+    .section-title:first-child { margin-top: 0; }
+
+    /* Quick Start Steps */
+    .steps { display: flex; flex-direction: column; gap: 10px; }
+    .step {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+    .step-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--cyan));
+      color: #000;
+      font-size: 12px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-body {}
+    .step-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .step-desc  { font-size: 12px; color: var(--sub); line-height: 1.5; }
+    .step-code  {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 2px 8px;
+      border-radius: 5px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      font-family: 'Cascadia Code', 'Consolas', monospace;
+      font-size: 11px;
+      color: var(--cyan);
+    }
+
+    /* Modules grid */
+    .modules { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    @media (max-width: 500px) { .modules { grid-template-columns: 1fr; } }
+    .module {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 11px 12px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      transition: border-color .2s;
+    }
+    .module:hover { border-color: rgba(16,217,126,.25); }
+    .module-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .module-name { font-size: 12px; font-weight: 700; color: var(--text); }
+    .module-desc { font-size: 11px; color: var(--muted); margin-top: 1px; line-height: 1.4; }
+
+    /* Warning */
+    .warning {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(245,158,11,.25);
+      background: rgba(245,158,11,.06);
+      margin-top: 20px;
+    }
+    .warning-icon { font-size: 20px; flex-shrink: 0; }
+    .warning-title { font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 3px; }
+    .warning-desc  { font-size: 12px; color: var(--sub); line-height: 1.5; }
+
+    /* CTA */
+    .cta {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--green), var(--cyan));
+      color: #000;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: filter .2s, transform .15s;
+    }
+    .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      border: 1px solid rgba(16,217,126,.3);
+      background: transparent;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .btn-secondary:hover { background: rgba(16,217,126,.08); }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px 32px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .footer a { color: var(--green); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div class="hero-badge">✅ Instalação Concluída / Installation Complete</div>
+    <div class="hero-logo">
+      <div class="logo-icon">🖥️</div>
+      <div class="logo-text">
+        <div class="logo-brand">HT Technology</div>
+        <div class="logo-sub">Windows Optimizer Pro v3.0</div>
+      </div>
+    </div>
+    <h1>Seu Windows. Otimizado. 🚀<br><span style="font-size:20px;font-weight:500;color:var(--sub)">Your Windows. Optimized.</span></h1>
+    <p class="lead">
+      Uma ferramenta gratuita e segura feita com carinho para a comunidade Windows.<br>
+      <em style="font-size:12px">A free and safe tool made with care for the Windows community.</em>
+    </p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">64+</div><div class="stat-label">Tweaks</div></div>
+      <div class="stat"><div class="stat-num">12</div><div class="stat-label">Módulos</div></div>
+      <div class="stat"><div class="stat-num">81/81</div><div class="stat-label">Testes OK</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-label">BSODs</div></div>
+    </div>
+  </div>
+
+  <!-- ── LANG TABS ── -->
+  <div class="lang-tabs">
+    <button class="lang-tab active" onclick="switchLang('ptbr', this)">🇧🇷 Português</button>
+    <button class="lang-tab" onclick="switchLang('en', this)">🇺🇸 English</button>
+  </div>
+
+  <div class="content">
+
+    <!-- ══════════ PT-BR ══════════ -->
+    <div class="lang-panel active" id="panel-ptbr">
+
+      <p class="section-title">🚀 Primeiros Passos</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">Abra o Dashboard</div>
+            <div class="step-desc">Clique no atalho criado na Área de Trabalho ou no Menu Iniciar.<br>O app abre no seu navegador padrão.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">Escolha os Tweaks</div>
+            <div class="step-desc">Navegue pelas abas e ative os toggles dos tweaks que deseja aplicar. Cada um tem uma descrição clara.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">Execute ou Exporte</div>
+            <div class="step-desc">Clique em <strong>"Executar Agora"</strong> para aplicar imediatamente, ou <strong>"Exportar .ps1"</strong> para revisar o script antes.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">Execute como Administrador</div>
+            <div class="step-desc">Para aplicar tweaks que alteram o sistema, execute o script exportado como Administrador:<br>
+              <span class="step-code">Clique direito → Executar com PowerShell → Sim (UAC)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="section-title">📦 O Que Está Instalado</p>
+      <div class="modules">
+        <div class="module"><div class="module-icon">🔧</div><div><div class="module-name">Diagnóstico & Reparo</div><div class="module-desc">SFC/DISM, ChkDsk, limpeza de cache</div></div></div>
+        <div class="module"><div class="module-icon">⚡</div><div><div class="module-name">Performance</div><div class="module-desc">Ultimate Performance, HAGS, Timer</div></div></div>
+        <div class="module"><div class="module-icon">🔒</div><div><div class="module-name">Privacidade</div><div class="module-desc">Telemetria, Recall AI, Copilot, Ads</div></div></div>
+        <div class="module"><div class="module-icon">🧹</div><div><div class="module-name">Limpeza</div><div class="module-desc">Temp, WinSxS, cache de navegadores</div></div></div>
+        <div class="module"><div class="module-icon">🌐</div><div><div class="module-name">Rede & DNS</div><div class="module-desc">DNS Cloudflare DoH, TCP Auto-Tuning</div></div></div>
+        <div class="module"><div class="module-icon">🎮</div><div><div class="module-name">Gaming</div><div class="module-desc">Game Mode, DirectX, FSO, CPU Priority</div></div></div>
+        <div class="module"><div class="module-icon">🛡️</div><div><div class="module-name">Segurança</div><div class="module-desc">UAC, Exploit Protection, RDP</div></div></div>
+        <div class="module"><div class="module-icon">⚙️</div><div><div class="module-name">Sistema</div><div class="module-desc">Modo escuro, menu clássico, extensões</div></div></div>
+        <div class="module"><div class="module-icon">🎯</div><div><div class="module-name">Perfis</div><div class="module-desc">Gaming Pro, Office, Servidor — 1 clique</div></div></div>
+        <div class="module"><div class="module-icon">📦</div><div><div class="module-name">Winget Store</div><div class="module-desc">Chrome, VS Code, Git, Steam e mais</div></div></div>
+        <div class="module"><div class="module-icon">📊</div><div><div class="module-name">Análise do Sistema</div><div class="module-desc">Score de saúde com recomendações</div></div></div>
+        <div class="module"><div class="module-icon">🗓️</div><div><div class="module-name">Agendador</div><div class="module-desc">Limpezas automáticas periódicas</div></div></div>
+      </div>
+
+      <div class="warning">
+        <div class="warning-icon">⚠️</div>
+        <div>
+          <div class="warning-title">Dica Importante</div>
+          <div class="warning-desc">Sempre crie um <strong>Ponto de Restauração</strong> antes de aplicar tweaks avançados. O app cria um automaticamente quando você usa o painel de Diagnóstico. Em caso de problemas, acesse: <strong>Painel de Controle → Recuperação → Restaurar o Sistema</strong>.</div>
+        </div>
+      </div>
+
+      <div class="cta">
+        <a class="btn-primary" href="index.html">🚀 Abrir Windows Optimizer</a>
+        <a class="btn-secondary" href="README.pt-br.md">📖 Documentação Completa</a>
+      </div>
+
+    </div>
+
+    <!-- ══════════ EN ══════════ -->
+    <div class="lang-panel" id="panel-en">
+
+      <p class="section-title">🚀 Getting Started</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">Open the Dashboard</div>
+            <div class="step-desc">Click the shortcut created on your Desktop or Start Menu. The app opens in your default browser.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">Choose Your Tweaks</div>
+            <div class="step-desc">Browse the tabs and toggle the tweaks you want to apply. Each one has a clear description and risk level.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">Run or Export</div>
+            <div class="step-desc">Click <strong>"Run Now"</strong> to apply immediately, or <strong>"Export .ps1"</strong> to review the script first.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">Run as Administrator</div>
+            <div class="step-desc">To apply system-level tweaks, run the exported script as Administrator:<br>
+              <span class="step-code">Right-click → Run with PowerShell → Yes (UAC)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="section-title">📦 What's Installed</p>
+      <div class="modules">
+        <div class="module"><div class="module-icon">🔧</div><div><div class="module-name">Diagnostics & Repair</div><div class="module-desc">SFC/DISM, ChkDsk, cache cleanup</div></div></div>
+        <div class="module"><div class="module-icon">⚡</div><div><div class="module-name">Performance</div><div class="module-desc">Ultimate Performance, HAGS, Timer</div></div></div>
+        <div class="module"><div class="module-icon">🔒</div><div><div class="module-name">Privacy</div><div class="module-desc">Telemetry, Recall AI, Copilot, Ads</div></div></div>
+        <div class="module"><div class="module-icon">🧹</div><div><div class="module-name">Cleanup</div><div class="module-desc">Temp files, WinSxS, browser cache</div></div></div>
+        <div class="module"><div class="module-icon">🌐</div><div><div class="module-name">Network & DNS</div><div class="module-desc">Cloudflare DoH DNS, TCP Auto-Tuning</div></div></div>
+        <div class="module"><div class="module-icon">🎮</div><div><div class="module-name">Gaming</div><div class="module-desc">Game Mode, DirectX, FSO, CPU Priority</div></div></div>
+        <div class="module"><div class="module-icon">🛡️</div><div><div class="module-name">Security</div><div class="module-desc">UAC, Exploit Protection, RDP</div></div></div>
+        <div class="module"><div class="module-icon">⚙️</div><div><div class="module-name">System</div><div class="module-desc">Dark mode, classic menu, extensions</div></div></div>
+        <div class="module"><div class="module-icon">🎯</div><div><div class="module-name">Profiles</div><div class="module-desc">Gaming Pro, Office, Server — 1 click</div></div></div>
+        <div class="module"><div class="module-icon">📦</div><div><div class="module-name">Winget Store</div><div class="module-desc">Chrome, VS Code, Git, Steam & more</div></div></div>
+        <div class="module"><div class="module-icon">📊</div><div><div class="module-name">System Analysis</div><div class="module-desc">Health score with recommendations</div></div></div>
+        <div class="module"><div class="module-icon">🗓️</div><div><div class="module-name">Scheduler</div><div class="module-desc">Automatic periodic cleanup tasks</div></div></div>
+      </div>
+
+      <div class="warning">
+        <div class="warning-icon">⚠️</div>
+        <div>
+          <div class="warning-title">Important Tip</div>
+          <div class="warning-desc">Always create a <strong>System Restore Point</strong> before applying advanced tweaks. The app creates one automatically when you use the Diagnostics panel. If needed, restore via: <strong>Control Panel → Recovery → System Restore</strong>.</div>
+        </div>
+      </div>
+
+      <div class="cta">
+        <a class="btn-primary" href="index.html">🚀 Open Windows Optimizer</a>
+        <a class="btn-secondary" href="README.en.md">📖 Full Documentation</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="footer">
+    HT Technology Windows Optimizer Pro v3.0 · Feito com ❤️ para a comunidade Windows<br>
+    Made with ❤️ for the Windows community ·
+    <a href="https://github.com/leizem/windows-optimizer" target="_blank">GitHub</a>
+  </div>
+
+  <script>
+    function switchLang(lang, el) {
+      document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.lang-panel').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('panel-' + lang).classList.add('active');
+    }
+
+    // Auto-detect browser language
+    const browserLang = navigator.language || navigator.userLanguage || '';
+    if (!browserLang.toLowerCase().startsWith('pt')) {
+      const enTab = document.querySelectorAll('.lang-tab')[1];
+      if (enTab) switchLang('en', enTab);
+    }
+  </script>
+</body>
+</html>
