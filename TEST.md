@@ -84,8 +84,11 @@ Abra o PowerShell na VM e execute:
 Get-FileHash "C:\Users\$env:USERNAME\Downloads\HT-Technology-WindowsOptimizer-Pro-v3.0.msi" -Algorithm SHA256
 ```
 
-> **Anote o hash** e compare com o hash publicado no GitHub Releases.  
-> *Note the hash and compare with the hash published on GitHub Releases.*
+> **Hash oficial / Official hash (SHA256):**  
+> `A5145286907A77957A90FDDEC634B18D7B5644A52A36A1FAB284271A1B9615A4`
+>
+> Se o hash for diferente, **não instale o arquivo** — pode estar corrompido ou substituído.  
+> *If the hash differs, **do not install the file** — it may be corrupted or tampered.*
 
 ---
 
