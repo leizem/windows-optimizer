@@ -1,7 +1,7 @@
 <div align="center">
 
 <img src="https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Windows 10 | 11"/>
-<img src="https://img.shields.io/badge/vers%C3%A3o-3.2-1877F2?style=for-the-badge" alt="v3.2"/>
+<img src="https://img.shields.io/badge/vers%C3%A3o-3.3-1877F2?style=for-the-badge" alt="v3.3"/>
 <img src="https://img.shields.io/badge/licen%C3%A7a-MIT-7c3aed?style=for-the-badge" alt="MIT"/>
 <img src="https://img.shields.io/badge/gratuito-%E2%9D%A4%EF%B8%8F-ef4444?style=for-the-badge" alt="Gratuito"/>
 

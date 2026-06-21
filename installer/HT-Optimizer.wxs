@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  HT Technology — Windows Optimizer Pro v3.2
+  HT Technology — Windows Optimizer Pro v3.3
   WiX Toolset v3 Source File
   Bilingual: Portuguese (Brazil) + English
-  Generates: HT-Technology-WindowsOptimizer-Pro-v3.2.msi
+  Generates: HT-Technology-WindowsOptimizer-Pro-v3.3.msi
 
   Diretório de instalação: totalmente configurável pelo usuário via InstallDirDlg.
   O usuário escolhe QUALQUER pasta durante a instalação.
@@ -16,10 +16,10 @@
        PRODUCT DEFINITION
   ══════════════════════════════════════════════════════════ -->
   <Product
-    Id="F93D4A61-8522-4660-A6F7-8BD0E1C24365"
+    Id="A1B2C3D4-E5F6-4789-ABCD-112233445566"
     Name="HT Technology Windows Optimizer Pro"
     Language="1046"
-    Version="3.2.0.0"
+    Version="3.3.0.0"
     Manufacturer="HT Technology"
     UpgradeCode="A7B3C2D1-E4F5-6789-ABCD-EF1234567890">
 
@@ -30,7 +30,7 @@
       Compressed="yes"
       InstallScope="perMachine"
       Description="Dashboard premium de otimizacao para Windows 10 e 11 — Premium optimization dashboard for Windows 10 and 11"
-      Comments="HT Technology Windows Optimizer Pro v3.2 — feito com dedicacao para a comunidade Windows. Made with dedication for the Windows community."
+      Comments="HT Technology Windows Optimizer Pro v3.3 — feito com dedicacao para a comunidade Windows. Made with dedication for the Windows community."
       Keywords="windows;optimizer;performance;privacy;tweaks;gaming;cleaner;ht technology"
       Manufacturer="HT Technology"
       Languages="1046,1033" />
@@ -165,7 +165,7 @@
           KeyPath="yes" />
         <RegistryValue Root="HKLM"
           Key="SOFTWARE\HTTechnology\WindowsOptimizerPro"
-          Name="Version"   Type="string" Value="3.2.0" />
+          Name="Version"   Type="string" Value="3.3.0" />
         <RegistryValue Root="HKLM"
           Key="SOFTWARE\HTTechnology\WindowsOptimizerPro"
           Name="Publisher" Type="string" Value="HT Technology" />

@@ -4,7 +4,7 @@
 # Requisito / Requires: WiX Toolset v3.14+ instalado
 
 param(
-    [string]$Version = "3.2.0.0",
+    [string]$Version = "3.3.0.0",
     [string]$OutDir  = "..\dist"
 )
 
