@@ -68,3 +68,15 @@ bsod-log/
 # O instalador compilado fica apenas no GitHub Releases
 dist/
 installer/assets/*.png
+
+# ── Artefatos de build WiX ────────────────────────────────────────
+*.wixobj
+*.wixpdb
+
+# ── Arquivos temporários e de sessão ─────────────────────────────
+*.tmp
+Thumbs.db:encryptable
+$RECYCLE.BIN/
+
+# ── Testes e relatórios internos (não relevantes para usuário final)
+TEST.md
