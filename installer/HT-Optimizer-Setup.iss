@@ -1,11 +1,11 @@
 ; ============================================================
-;  HT Technology — Windows Optimizer Pro v3.0
+;  HT Technology — Windows Optimizer Pro v3.1
 ;  Inno Setup Script
 ;  Bilingual: Portuguese (Brazil) + English
 ; ============================================================
 
 #define AppName      "Windows Optimizer Pro"
-#define AppVersion   "3.0.0"
+#define AppVersion   "3.1.0"
 #define AppPublisher "HT Technology"
 #define AppURL       "https://github.com/leizem/windows-optimizer"
 #define AppExeName   "Launch-HT-Optimizer.bat"
@@ -21,7 +21,7 @@ AppPublisher              = {#AppPublisher}
 AppPublisherURL           = {#AppURL}
 AppSupportURL             = {#AppURL}/issues
 AppUpdatesURL             = {#AppURL}/releases
-VersionInfoVersion        = 3.0.0.0
+VersionInfoVersion        = 3.1.0.0
 VersionInfoCompany        = HT Technology
 VersionInfoDescription    = HT Technology Windows Optimizer Pro — Dashboard de otimizacao para Windows 10/11
 VersionInfoCopyright      = Copyright (C) 2026 HT Technology
@@ -32,7 +32,7 @@ DefaultGroupName          = HT Technology\Windows Optimizer Pro
 AllowNoIcons              = no
 DisableProgramGroupPage   = auto
 OutputDir                 = ..\dist
-OutputBaseFilename        = HT-Technology-WindowsOptimizer-Pro-v3.0-Setup
+OutputBaseFilename        = HT-Technology-WindowsOptimizer-Pro-v3.1-Setup
 SetupIconFile             = assets\icon.ico
 Compression               = lzma2/ultra64
 SolidCompression          = yes
