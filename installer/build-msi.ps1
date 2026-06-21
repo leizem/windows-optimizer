@@ -4,7 +4,7 @@
 # Requisito / Requires: WiX Toolset v3.14+ instalado
 
 param(
-    [string]$Version = "3.1.0.0",
+    [string]$Version = "3.2.0.0",
     [string]$OutDir  = "..\dist"
 )
 
@@ -27,10 +27,11 @@ $candle = "$wixBin\candle.exe"
 $light  = "$wixBin\light.exe"
 $wxs    = "$ScriptDir\HT-Optimizer.wxs"
 $outDir = "$ScriptDir\$OutDir"
-$wixobj = "$outDir\HT-Optimizer.wixobj"
+$wixobj = "$ScriptDir\tmp\HT-Optimizer.wixobj"
 $msi    = "$outDir\HT-Technology-WindowsOptimizer-Pro-v$($Version.Substring(0,3)).msi"
 
-New-Item -ItemType Directory -Force $outDir | Out-Null
+New-Item -ItemType Directory -Force $outDir  | Out-Null
+New-Item -ItemType Directory -Force "$ScriptDir\tmp" | Out-Null
 
 Push-Location $ScriptDir
 
